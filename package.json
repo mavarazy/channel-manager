@@ -1,0 +1,39 @@
+{
+  "name": "chanman-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bulma": "^0.7.1",
+    "bulma-pageloader": "^1.0.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": {
+    "/api/analytics": {
+      "target": "https://0f80654b-74a1-4ec9-bbc4-b408a30f3f5c.mock.pstmn.io",
+      "changeOrigin": true
+    },
+    "/api/availability": {
+      "target": "https://eaf90ad8-ed7f-4229-ba85-87537b301987.mock.pstmn.io",
+      "changeOrigin": true
+    },
+    "/api/properties": {
+      "target": "https://a0f62930-28ad-4673-a894-af066b947378.mock.pstmn.io",
+      "changeOrigin": true
+    },
+    "/api/bookings": {
+      "target": "https://410a9e02-c7c7-4655-ba5f-3c2c82f0b91f.mock.pstmn.io",
+      "changeOrigin": true
+    }
+  }
+}
