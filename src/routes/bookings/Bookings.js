@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 import { connectAndLoad } from "../../components/Loading";
 import { getBookings } from "../../reducers/bookings.actions";
 
@@ -11,11 +12,11 @@ const BookingDate = ({ date }) => {
   );
 };
 
-const BookingRow = ({ reservationId, checkIn, checkOut, status, channel, guest, guestCountry, propertyId, inbox }) => (
+const BookingRow = ({ bookingId, reservationId, checkIn, checkOut, status, channel, guest, guestCountry, propertyId, inbox }) => (
   <tr>
     <td>{reservationId}</td>
     <td>
-      <BookingDate date={checkIn}/>/<br/>
+      <BookingDate date={checkIn}/>&nbsp;/<br/>
       <BookingDate date={checkOut}/>
     </td>
     <td>{status}</td>
@@ -25,8 +26,7 @@ const BookingRow = ({ reservationId, checkIn, checkOut, status, channel, guest, 
       {guestCountry}
     </td>
     <td>{propertyId}</td>
-    <td>{inbox}</td>
-
+    <td><Link to={`/bookings/${bookingId}`}>{inbox}</Link></td>
   </tr>
 );
 

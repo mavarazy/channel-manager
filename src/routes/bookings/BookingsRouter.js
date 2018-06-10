@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import Booking from "./Booking";
 import Bookings from "./Bookings";
 
 const BookingsRouter = () => (
@@ -7,7 +8,8 @@ const BookingsRouter = () => (
     <div className="hero-body">
       <div className="container">
         <Switch>
-          <Route path="/bookings" component={Bookings}/>
+          <Route exact path="/bookings" component={Bookings}/>
+          <Route path="/bookings/:bookingId" component={Booking}/>
           <h1 className="title">Bookings</h1>
         </Switch>
       </div>
