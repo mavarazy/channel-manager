@@ -18,11 +18,11 @@ const withLoader = (loadingTasks, TargetComponent) => {
 
     render() {
       if (this.state.isLoading) {
-        return <div className="hero">
-          <div className="hero-body has-text-centered">
-            <div className="button is-large is-primary is-loading is-outlined" style={{ border: 0 }}/>
+        return (
+          <div className="container has-text-centered">
+            <div className="button is-large is-primary is-loading is-outlined is-inverted"/>
           </div>
-        </div>
+        )
       } else {
         return <TargetComponent {... this.props}/>
       }

@@ -1,59 +1,47 @@
 import React from "react";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 import { connectAndLoad } from "../../components/connectAndLoad";
 import { getProperties } from "../../reducers/properties.actions";
 
-const PropertyRow = ({ reservationId, checkIn, checkOut, status, channel, guest, guestCountry, propertyId, inbox }) => (
+const PropertyChannelStatus = ({ status, link }) => {
+  if (status === "notConnected") {
+    return (
+      <span>Not&nbsp;Connected</span>
+    )
+  } else {
+    return (
+      <a href={link}>{link}</a>
+    );
+  }
+};
+
+const PropertyRow = ({ propertyId, address, channels: { airBnB, booking, avito }, isActive }) => (
   <tr>
-    <td>{reservationId}</td>
-    <td>{status}</td>
-    <td>{channel}</td>
+    <td><Link to={`/properties/${propertyId}`}>{address.address}</Link></td>
+    <td><PropertyChannelStatus {...airBnB}/></td>
+    <td><PropertyChannelStatus {...booking}/></td>
+    <td><PropertyChannelStatus {...avito}/></td>
     <td>
-      {guest}<br/>
-      {guestCountry}
+      <div className="control">
+        <label className="checkbox" disabled>
+          <input type="checkbox" checked={isActive} disabled/>
+          Active
+        </label>
+      </div>
     </td>
-    <td>{propertyId}</td>
   </tr>
 );
-
-
-// {
-//   propertyId: '1',
-//     address: {
-//   city: 'Saint Petersburg',
-//     country: 'Russia',
-//     address: 'Pulkovskaia 6, building 2, flat 393'
-// },
-//   price: 30,
-//     channels: {
-//   airBnb: {
-//     link: 'https://airbnb.com/property/823',
-//       lastUpdated: '20180101',
-//       status: 'upToDate'
-//   },
-//   booking: {
-//     link: 'https://booking.com/property/123',
-//       lastUpdated: '20180102',
-//       status: 'upToDate'
-//   },
-//   avito: {
-//     status: 'notConnected'
-//   }
-// },
-//   isActive: true
-// }
 
 const PropertiesTable = ({ properties }) => (
   <table className="table has-text-centered is-fullwidth">
     <thead>
     <tr>
-      <th>Relevant Booking</th>
-      <th>Dates</th>
-      <th>Status</th>
-      <th>Channel</th>
-      <th>Guest</th>
-      <th>Property</th>
-      <th>Inbox</th>
+      <th>Address</th>
+      <th>AirBnB</th>
+      <th>Booking</th>
+      <th>Avito</th>
+      <th>Active</th>
     </tr>
     </thead>
     <tbody>
