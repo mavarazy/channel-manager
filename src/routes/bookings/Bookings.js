@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
-import { connectAndLoad } from "../../components/Loading";
+import { connectAndLoad } from "../../components/connectAndLoad";
 import { getBookings } from "../../reducers/bookings.actions";
 
 const BookingDate = ({ date }) => {
@@ -14,13 +14,15 @@ const BookingDate = ({ date }) => {
 
 const BookingRow = ({ bookingId, reservationId, checkIn, checkOut, status, channel, guest, guestCountry, propertyId, inbox }) => (
   <tr>
-    <td>{reservationId}</td>
+    <td>
+      {channel}<br/>
+      {reservationId}
+    </td>
     <td>
       <BookingDate date={checkIn}/>&nbsp;/<br/>
       <BookingDate date={checkOut}/>
     </td>
     <td>{status}</td>
-    <td>{channel}</td>
     <td>
       {guest}<br/>
       {guestCountry}
@@ -37,14 +39,13 @@ const BookingTable = ({ bookings }) => (
       <th>Relevant Booking</th>
       <th>Dates</th>
       <th>Status</th>
-      <th>Channel</th>
       <th>Guest</th>
       <th>Property</th>
       <th>Inbox</th>
     </tr>
     </thead>
     <tbody>
-    {bookings.map((booking, i) => <BookingRow key={i} {...booking}/>)}
+    {bookings.map((booking) => <BookingRow key={booking.bookingId} {...booking}/>)}
     </tbody>
   </table>
 );

@@ -10,7 +10,6 @@ const BookingsRouter = () => (
         <Switch>
           <Route exact path="/bookings" component={Bookings}/>
           <Route path="/bookings/:bookingId" component={Booking}/>
-          <h1 className="title">Bookings</h1>
         </Switch>
       </div>
     </div>

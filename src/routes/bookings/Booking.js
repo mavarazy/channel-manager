@@ -5,7 +5,7 @@ import Gravatar from 'react-gravatar'
 import { getBookingDetails, sendMessage } from "reducers/bookings.actions";
 import { bindActionCreators } from "redux";
 import { Field, Form, reduxForm } from "redux-form";
-import { connectAndLoad } from "../../components/Loading";
+import { connectAndLoad } from "../../components/connectAndLoad";
 
 const GuestDescription = ({ guest, guestCountry, contact: { email } }) => (
   <Fragment>
@@ -15,7 +15,7 @@ const GuestDescription = ({ guest, guestCountry, contact: { email } }) => (
     <h3 className="title">Guest Country</h3>
     <h4 className="subtitle">{guestCountry}</h4>
   </Fragment>
-)
+);
 
 const BookingDates = ({ checkIn, checkOut }) => (
   <Fragment>
