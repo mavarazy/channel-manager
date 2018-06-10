@@ -1,9 +1,10 @@
+import cx from "classnames";
 import moment from "moment";
 import React, { Fragment } from "react";
 import Gravatar from 'react-gravatar'
-import { getBookingDetails } from "reducers/bookings.actions";
-import cx from "classnames";
+import { getBookingDetails, sendMessage } from "reducers/bookings.actions";
 import { bindActionCreators } from "redux";
+import { Field, Form, reduxForm } from "redux-form";
 import { connectAndLoad } from "../../components/Loading";
 
 const GuestDescription = ({ guest, guestCountry, contact: { email } }) => (
@@ -61,11 +62,14 @@ const BookingContact = ({ contact: { phone, email, vk, fb, telegram, whatsApp, v
   </Fragment>
 );
 
-const BookingMessage = ({ message: { date, content, source, from }}) => (
-  <div className={cx("message", { "has-text-left is-info": from === "guest", "has-text-right is-success": from === "host" })}>
+const BookingMessage = ({ message: { date, message, source, from } }) => (
+  <div className={cx("message", {
+    "has-text-left is-info": from === "guest",
+    "has-text-right is-success": from === "host"
+  })}>
     <div className="message-body">
       <small>{source}</small>
-      <h1 className="title">{content}</h1>
+      <h1 className="title">{message}</h1>
       <h2 className="subtitle">{moment(date, "YYYYMMDD").format("DD - MMM - YYYY")}</h2>
     </div>
   </div>
@@ -79,7 +83,27 @@ const BookingMessages = ({ booking: { messages } }) => (
   </div>
 );
 
-const Booking = ({ booking }) => (
+const BookingSendMessage = reduxForm({ form: "bookings-send-message" })(
+  ({ handleSubmit, submitting }) => (
+    <Form onSubmit={handleSubmit}>
+      <div className="field has-addons">
+        <p className="control is-expanded">
+          <Field
+            name="message"
+            placeholder="Message"
+            component="input"
+            className="input is-large"
+          />
+        </p>
+        <p className="control">
+          <button type="submit" className={cx("button is-large is-primary", { "is-loading": submitting })}>Send</button>
+        </p>
+      </div>
+    </Form>
+  )
+);
+
+const Booking = ({ booking, sendMessage }) => (
   <Fragment>
     <section className="section">
       <div className="columns">
@@ -98,6 +122,7 @@ const Booking = ({ booking }) => (
     </section>
     <section className="section">
       <BookingMessages booking={booking}/>
+      <BookingSendMessage onSubmit={sendMessage}/>
     </section>
   </Fragment>
 );
@@ -105,7 +130,8 @@ const Booking = ({ booking }) => (
 const mapStateToProps = ({ bookings }, { match: { params: { bookingId } } }) => ({ booking: bookings[bookingId] });
 const mapDispatchToProps = (dispatch, { match: { params: { bookingId } } }) => bindActionCreators(
   {
-    getBookingDetails: () => getBookingDetails(bookingId)
+    getBookingDetails: () => getBookingDetails(bookingId),
+    sendMessage: (message) => sendMessage(bookingId, message),
   },
   dispatch
 );
