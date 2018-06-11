@@ -8,7 +8,6 @@ const PropertiesRouter = () => (
       <div className="container">
         <Switch>
           <Route exact path="/properties" component={Properties}/>
-          {/*<Route path="/properties/:propertyId" component={Booking}/>*/}
         </Switch>
       </div>
     </div>

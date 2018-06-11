@@ -12,7 +12,7 @@ const BookingDate = ({ date }) => {
   );
 };
 
-const BookingRow = ({ bookingId, reservationId, checkIn, checkOut, status, channel, guest, guestCountry, property, inbox }) => (
+const BookingRow = ({ bookingId, reservationId, checkIn, checkOut, status, paymentStatus, channel, guest, guestCountry, property, inbox }) => (
   <tr>
     <td>
       <BookingDate date={checkIn}/><br/>
@@ -22,7 +22,10 @@ const BookingRow = ({ bookingId, reservationId, checkIn, checkOut, status, chann
       {channel}<br/>
       {reservationId}
     </td>
-    <td>{status}</td>
+    <td>
+      {status}<br/>
+      {paymentStatus}
+    </td>
     <td>
       {guest}<br/>
       {guestCountry}
@@ -37,7 +40,7 @@ const BookingTable = ({ bookings }) => (
     <thead>
     <tr>
       <th>Dates</th>
-      <th>Relevant Booking</th>
+      <th>Booking</th>
       <th>Status</th>
       <th>Guest</th>
       <th>Property</th>

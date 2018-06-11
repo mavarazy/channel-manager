@@ -1,6 +1,5 @@
 import React from "react";
 import { bindActionCreators } from "redux";
-import { Link } from "react-router-dom";
 import { connectAndLoad } from "../../components/connectAndLoad";
 import { getProperties } from "../../reducers/properties.actions";
 
@@ -18,7 +17,7 @@ const PropertyChannelStatus = ({ status, link }) => {
 
 const PropertyRow = ({ propertyId, address, channels: { airBnB, booking, avito }, isActive }) => (
   <tr>
-    <td><Link to={`/properties/${propertyId}`}>{address.address}</Link></td>
+    <td>{address.address}</td>
     <td><PropertyChannelStatus {...airBnB}/></td>
     <td><PropertyChannelStatus {...booking}/></td>
     <td><PropertyChannelStatus {...avito}/></td>
