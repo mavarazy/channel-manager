@@ -1,27 +1,33 @@
-import React from "react";
+import cx from "classnames";
 import PropTypes from "prop-types";
-import { Link, Route } from "react-router-dom";
+import React, { Component } from "react";
+import ReactJson from "react-json-view";
+import { Link, Route, Switch } from "react-router-dom";
 
-const ListElement = ({ to, text, exact = false }) => (
-  <Route path={to} exact={exact} children={({ match }) => (
-    <li className={match ? "is-active" : ""}>
-      <Link to={to}>{text}</Link>
-    </li>
-  )}/>
+const ListElement = ({ to, text, exact }) => (
+  <li className={cx({ "is-active": window.location.pathname == to })}>
+    <Link to={to}>{text} </Link>
+  </li>
 );
 
-const ListNavigation = ({ routes }) => (
-  <ul>
-    {routes.map((nav, key) => <ListElement key={key} {...nav}/>)}
-  </ul>
-);
+class ListNavigation extends Component {
 
-ListNavigation.propTypes = {
-  routes: PropTypes.arrayOf(PropTypes.shape({
-    to: PropTypes.string.isRequired,
-    text: PropTypes.string,
-    exact: PropTypes.bool
-  }))
-};
+  static propTypes = {
+    routes: PropTypes.arrayOf(PropTypes.shape({
+      to: PropTypes.string.isRequired,
+      text: PropTypes.string,
+      exact: PropTypes.bool
+    }))
+  };
+
+  render() {
+    return (
+      <ul>
+        {this.props.routes.map((nav, key) => <ListElement key={key} {...nav}/>)}
+      </ul>
+    )
+  }
+
+}
 
 export default ListNavigation;

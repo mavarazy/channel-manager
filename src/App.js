@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Navigation } from "./components";
 import BookingsRouter from "./routes/bookings/BookingsRouter";
 import CalendarRouter from "./routes/calendar/CalendarRouter";
@@ -12,9 +12,10 @@ const App = () => (
     <Fragment>
       <Navigation/>
       <Switch>
+        <Redirect path="/" to="/bookings" exact/>
+        <Route path="/bookings" component={BookingsRouter}/>
         <Route path="/properties" component={PropertiesRouter}/>
         <Route path="/calendar" component={CalendarRouter}/>
-        <Route path="/bookings" component={BookingsRouter}/>
         <Route path="/reports" component={ReportsRouter}/>
         <Route component={NotFound}/>
       </Switch>

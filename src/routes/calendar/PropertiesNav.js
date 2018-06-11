@@ -1,6 +1,7 @@
 import React from "react";
 import { bindActionCreators } from "redux";
-import { connectAndLoad } from "../../components/connectAndLoad";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import ListNavigation from "../../components/ListNavigation";
 import { getProperties } from "../../reducers/properties.actions";
 
@@ -15,4 +16,4 @@ const PropertiesNav = ({ properties }) => (
 const mapStateToProps = ({ properties }) => ({ properties: Object.values(properties) });
 const mapDispatchToProps = (dispatch) => bindActionCreators({ getProperties }, dispatch);
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getProperties }, PropertiesNav);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PropertiesNav));

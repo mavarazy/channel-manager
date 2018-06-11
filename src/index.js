@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import App from './App';
+import { getProperties } from "./reducers/properties.actions";
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -15,10 +16,17 @@ import reducers from "./reducers";
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(promiseMiddleware, thunk)));
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+const loadState = Promise.all([
+  store.dispatch(getProperties())
+]);
+
+loadState.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  );
+});
+
 registerServiceWorker();

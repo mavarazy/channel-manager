@@ -1,6 +1,6 @@
 import React from "react";
 import { bindActionCreators } from "redux";
-import { connectAndLoad } from "../../components/connectAndLoad";
+import { connect } from "react-redux";
 import { getProperties } from "../../reducers/properties.actions";
 
 const PropertyChannelStatus = ({ status, link }) => {
@@ -56,4 +56,4 @@ const Properties = ({ properties }) => (
 const mapStateToProps = ({ properties }) => ({ properties: Object.values(properties) });
 const mapDispatchToProps = (dispatch) => bindActionCreators({ getProperties }, dispatch);
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getProperties }, Properties);
+export default connect(mapStateToProps, mapDispatchToProps)(Properties);
