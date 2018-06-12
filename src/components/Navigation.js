@@ -2,12 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export const Navigation = () => (
-  <nav className="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
+  <nav className="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
-      <a className="navbar-item" href="https://bulma.io">
-        <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28"/>
-      </a>
-
       <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"/>
         <span aria-hidden="true"/>

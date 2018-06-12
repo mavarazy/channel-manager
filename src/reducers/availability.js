@@ -1,5 +1,5 @@
-import { handleActions } from "redux-actions";
-import { getAvailability } from "./availability.actions";
+import { handleActions, combineActions } from "redux-actions";
+import { getAvailability, releaseDates, lockDates } from "./availability.actions";
 import { produce } from "./produce";
 
 const propertyAvailabilityReducer = handleActions(
@@ -9,14 +9,21 @@ const propertyAvailabilityReducer = handleActions(
         const { date } = propertyState;
         draft[date] = propertyState
       })
-    })
+    }),
+    [releaseDates]: produce((draft, { meta: { fromTo: { from, to }} }) => {
+      draft[from].status = "available";
+
+    }),
+    [lockDates]: produce((draft, { meta: { fromTo: { from, to }} }) => {
+      draft[from].status = "blocked";
+    }),
   },
   {}
 );
 
 const availabilityReducer = handleActions(
   {
-    [getAvailability]: produce((draft, action) => {
+    [combineActions(getAvailability, releaseDates, lockDates)]: produce((draft, action) => {
       const { meta: { propertyId }} = action;
       draft[propertyId] = propertyAvailabilityReducer(draft[propertyId], action)
     }),
