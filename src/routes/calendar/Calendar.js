@@ -2,7 +2,7 @@ import cx from "classnames";
 import moment from "moment";
 import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
-import { connectAndLoad } from "../../components/connectAndLoad";
+import { connect } from "react-redux";
 import { getAvailability, lockDates, releaseDates } from "../../reducers/availability.actions";
 
 const BookedStatus = () => (
@@ -25,7 +25,8 @@ class AvailableStatus extends Component {
     return (
       <Fragment>
         <div className="dropdown-trigger is-disabled">
-          <button className={cx("button is-success", { "is-loading": this.state.isLoading })} aria-haspopup="true" aria-controls="dropdown-menu">
+          <button className={cx("button is-success", { "is-loading": this.state.isLoading })} aria-haspopup="true"
+                  aria-controls="dropdown-menu">
             <span>Available</span>
           </button>
         </div>
@@ -53,7 +54,8 @@ class BlockedStatus extends Component {
     return (
       <Fragment>
         <div className="dropdown-trigger is-disabled">
-          <button className={cx("button is-warning", { "is-loading": this.state.isLoading })} aria-haspopup="true" aria-controls="dropdown-menu">
+          <button className={cx("button is-warning", { "is-loading": this.state.isLoading })} aria-haspopup="true"
+                  aria-controls="dropdown-menu">
             <span>Locked</span>
           </button>
         </div>
@@ -102,55 +104,69 @@ const CalendarDate = (props) => (
   </article>
 );
 
-const Calendar = ({ calendar, lockDates, releaseDates }) => {
-  return (
-    <div className="tile is-ancestor">
-      <div className="tile is-vertical">
-        <div className="tile">
-          <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 0 ?
-              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
-                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
-          </div>
-          <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 1 ?
-              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
-                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
-          </div>
-          <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 2 ?
-              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
-                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
-          </div>
-          <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 3 ?
-              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
-                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
-          </div>
-          <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 4 ?
-              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
-                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
-          </div>
-          <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 5 ?
-              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
-                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
-          </div>
-          <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 6 ?
-              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
-                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+class Calendar extends Component {
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.propertyId !== this.props.propertyId) {
+      nextProps.getAvailability();
+    }
+  }
+
+  componentWillMount() {
+    this.props.getAvailability(this.props.propertyId);
+  }
+
+  render() {
+    const { calendar, lockDates, releaseDates } = this.props;
+    return (
+      <div className="tile is-ancestor">
+        <div className="tile is-vertical">
+          <div className="tile">
+            <div className="tile is-parent is-vertical">
+              {calendar.map((cal, i) => i % 7 === 0 ?
+                <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                              release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            </div>
+            <div className="tile is-parent is-vertical">
+              {calendar.map((cal, i) => i % 7 === 1 ?
+                <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                              release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            </div>
+            <div className="tile is-parent is-vertical">
+              {calendar.map((cal, i) => i % 7 === 2 ?
+                <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                              release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            </div>
+            <div className="tile is-parent is-vertical">
+              {calendar.map((cal, i) => i % 7 === 3 ?
+                <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                              release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            </div>
+            <div className="tile is-parent is-vertical">
+              {calendar.map((cal, i) => i % 7 === 4 ?
+                <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                              release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            </div>
+            <div className="tile is-parent is-vertical">
+              {calendar.map((cal, i) => i % 7 === 5 ?
+                <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                              release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            </div>
+            <div className="tile is-parent is-vertical">
+              {calendar.map((cal, i) => i % 7 === 6 ?
+                <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                              release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = ({ availability }, { match: { params: { propertyId } } }) => {
   const calendar = Object.values(availability[propertyId] || {});
-  return { calendar };
+  return { calendar, propertyId };
 };
 const mapDispatchToProps = (dispatch, { match: { params: { propertyId } } }) => bindActionCreators(
   {
@@ -161,4 +177,4 @@ const mapDispatchToProps = (dispatch, { match: { params: { propertyId } } }) => 
   dispatch
 );
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getAvailability }, Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
