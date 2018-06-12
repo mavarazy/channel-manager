@@ -7,9 +7,18 @@ const withLoader = (loadingTasks, TargetComponent) => {
   class LoadingComponent extends Component {
     state = { isLoading: true };
 
-    componentDidMount() {
+    load = () => {
+      this.setState({ isLoading: true });
       const tasks = isFunction(loadingTasks) ? loadingTasks(this.props) : Promise.all(Object.keys(loadingTasks).map(key => this.props[key]()));
       tasks.then(() => !this.destroyed && this.setState({ isLoading: false }));
+    };
+
+    componentDidMount() {
+      this.load();
+    }
+
+    componentWillReceiveProps() {
+      this.load();
     }
 
     componentWillUnmount() {

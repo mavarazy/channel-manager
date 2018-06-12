@@ -1,6 +1,5 @@
 import { handleActions } from "redux-actions";
 import { getAvailability } from "./availability.actions";
-import { getBookingDetails, getBookings, sendMessage } from "./bookings.actions";
 import { produce } from "./produce";
 
 const propertyAvailabilityReducer = handleActions(
@@ -18,7 +17,8 @@ const propertyAvailabilityReducer = handleActions(
 const availabilityReducer = handleActions(
   {
     [getAvailability]: produce((draft, action) => {
-      draft[action.propertyId] = propertyAvailabilityReducer(draft[action.propertyId], action)
+      const { meta: { propertyId }} = action;
+      draft[propertyId] = propertyAvailabilityReducer(draft[propertyId], action)
     }),
   },
   {}

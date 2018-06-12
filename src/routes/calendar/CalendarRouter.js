@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Switch, Route, NavLink } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import PropertiesNav from "./PropertiesNav";
 import Calendar from "./Calendar";
 
@@ -16,9 +16,7 @@ const CalendarRouter = () => (
     </div>
   </div>
   <div className="container">
-    <Switch>
-      <Route exact path="/calendar" component={Calendar}/>
-    </Switch>
+    <Route exact path="/calendar/:propertyId" component={Calendar}/>
   </div>
   </Fragment>
 );
