@@ -3,6 +3,7 @@ import moment from "moment";
 import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { connectAndLoad } from "../../components/connectAndLoad";
 import { getAvailability, lockDates, releaseDates } from "../../reducers/availability.actions";
 
 const BookedStatus = () => (
@@ -106,16 +107,6 @@ const CalendarDate = (props) => (
 
 class Calendar extends Component {
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.propertyId !== this.props.propertyId) {
-      nextProps.getAvailability();
-    }
-  }
-
-  componentWillMount() {
-    this.props.getAvailability(this.props.propertyId);
-  }
-
   render() {
     const { calendar, lockDates, releaseDates } = this.props;
     return (
@@ -177,4 +168,4 @@ const mapDispatchToProps = (dispatch, { match: { params: { propertyId } } }) => 
   dispatch
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getAvailability }, Calendar);
