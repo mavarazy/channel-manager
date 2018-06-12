@@ -2,7 +2,6 @@ import cx from "classnames";
 import moment from "moment";
 import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 import { connectAndLoad } from "../../components/connectAndLoad";
 import { getAvailability, lockDates, releaseDates } from "../../reducers/availability.actions";
 

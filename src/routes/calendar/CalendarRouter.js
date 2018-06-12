@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 import Calendar from "./Calendar";
-import PropertiesNav from "./PropertiesNav";
+import PropertiesDropdown from "./PropertiesDropdown";
 
 const CalendarRouter = () => (
   <Fragment>
@@ -11,10 +11,12 @@ const CalendarRouter = () => (
           <h1 className="title">Calendar</h1>
         </div>
       </div>
-      <div className="hero-foot">
-        <PropertiesNav/>
-      </div>
     </div>
+    <section className="section">
+      <div className="container">
+        <Route path="/calendar/:propertyId?" component={PropertiesDropdown}/>
+      </div>
+    </section>
     <section className="section">
       <div className="container">
         <Route exact path="/calendar/:propertyId" component={Calendar}/>
