@@ -1,6 +1,6 @@
 import cx from "classnames";
 import moment from "moment";
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connectAndLoad } from "../../components/connectAndLoad";
 import { getAvailability, lockDates, releaseDates } from "../../reducers/availability.actions";
@@ -13,44 +13,67 @@ const BookedStatus = () => (
   </div>
 );
 
-const AvailableStatus = ({ lock }) => (
-  <Fragment>
-    <div className="dropdown-trigger is-disabled">
-      <button className="button is-success" aria-haspopup="true" aria-controls="dropdown-menu">
-        <span>Available</span>
-      </button>
-    </div>
-    <div className="dropdown-menu" id="dropdown-menu" role="menu">
-      <div className="dropdown-content">
-        <a className="dropdown-item" onClick={lock}>
-          Lock
-        </a>
-      </div>
-    </div>
-  </Fragment>
-);
+class AvailableStatus extends Component {
+  state = { isLoading: false };
 
-const BlockedStatus = ({ release }) => (
-  <Fragment>
-    <div className="dropdown-trigger is-disabled">
-      <button className="button is-warning" aria-haspopup="true" aria-controls="dropdown-menu">
-        <span>Locked</span>
-      </button>
-    </div>
-    <div className="dropdown-menu" id="dropdown-menu" role="menu">
-      <div className="dropdown-content">
-        <a className="dropdown-item" onClick={release}>
-          Unlock
-        </a>
-      </div>
-    </div>
-  </Fragment>
-);
+  handleLock = () => {
+    this.setState({ isLoading: true });
+    this.props.lock()
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <div className="dropdown-trigger is-disabled">
+          <button className={cx("button is-success", { "is-loading": this.state.isLoading })} aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>Available</span>
+          </button>
+        </div>
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          <div className="dropdown-content">
+            <a className="dropdown-item" onClick={this.handleLock}>
+              Lock
+            </a>
+          </div>
+        </div>
+      </Fragment>
+    )
+  };
+}
+
+class BlockedStatus extends Component {
+  state = { isLoading: false };
+
+  handleRelease = () => {
+    this.setState({ isLoading: true });
+    this.props.release();
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <div className="dropdown-trigger is-disabled">
+          <button className={cx("button is-warning", { "is-loading": this.state.isLoading })} aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>Locked</span>
+          </button>
+        </div>
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          <div className="dropdown-content">
+            <a className="dropdown-item" onClick={this.handleRelease}>
+              Unlock
+            </a>
+          </div>
+        </div>
+      </Fragment>
+    );
+  }
+}
 
 const BookingStatus = (props) => (
   <div className="control">
     <div className="dropdown is-primary is-hoverable">
-      {props.status === "available" ? <AvailableStatus {...props}/> : props.status === "booked" ? <BookedStatus {...props}/> : <BlockedStatus {...props}/>}
+      {props.status === "available" ? <AvailableStatus {...props}/> : props.status === "booked" ?
+        <BookedStatus {...props}/> : <BlockedStatus {...props}/>}
     </div>
   </div>
 );
@@ -74,7 +97,8 @@ const CalendarDate = (props) => (
   <article className={cx("tile is-child box")}>
     <p className="subtitle is-marginless">{moment(props.date, "YYYYMMDD").format("DD-MMM")}</p>
     <BookingStatus {...props}/>
-    {props.status === "booked" ? <BookedDate {...props}/> : props.status === "available" ? <AvailableDate {...props}/> : null}
+    {props.status === "booked" ? <BookedDate {...props}/> : props.status === "available" ?
+      <AvailableDate {...props}/> : null}
   </article>
 );
 
@@ -84,25 +108,39 @@ const Calendar = ({ calendar, lockDates, releaseDates }) => {
       <div className="tile is-vertical">
         <div className="tile">
           <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 0 ? <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })} release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            {calendar.map((cal, i) => i % 7 === 0 ?
+              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
           </div>
           <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 1 ? <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })} release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            {calendar.map((cal, i) => i % 7 === 1 ?
+              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
           </div>
           <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 2 ? <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })} release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            {calendar.map((cal, i) => i % 7 === 2 ?
+              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
           </div>
           <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 3 ? <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })} release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            {calendar.map((cal, i) => i % 7 === 3 ?
+              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
           </div>
           <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 4 ? <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })} release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            {calendar.map((cal, i) => i % 7 === 4 ?
+              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
           </div>
           <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 5 ? <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })} release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            {calendar.map((cal, i) => i % 7 === 5 ?
+              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
           </div>
           <div className="tile is-parent is-vertical">
-            {calendar.map((cal, i) => i % 7 === 6 ? <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })} release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
+            {calendar.map((cal, i) => i % 7 === 6 ?
+              <CalendarDate key={i} {...cal} lock={() => lockDates({ from: cal.date, to: cal.date })}
+                            release={() => releaseDates({ from: cal.date, to: cal.date })}/> : null)}
           </div>
         </div>
       </div>
