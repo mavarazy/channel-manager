@@ -17,8 +17,10 @@ const withLoader = (loadingTasks, TargetComponent) => {
       this.load();
     }
 
-    componentWillReceiveProps() {
-      this.load();
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.match !== this.props.match) {
+        this.load();
+      }
     }
 
     componentWillUnmount() {
