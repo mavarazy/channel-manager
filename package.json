@@ -43,6 +43,10 @@
     "eject": "react-scripts eject"
   },
   "proxy": {
+    "/api/auth": {
+      "target": "https://596504e0-924b-43ce-bd24-8bab4d68ce29.mock.pstmn.io",
+      "changeOrigin": true
+    },
     "/api/analytics": {
       "target": "https://c24ef53b-1e61-41cb-bf85-24a5f8fb2745.mock.pstmn.io",
       "changeOrigin": true

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/fontawesome-free-solid'
 
@@ -39,9 +39,9 @@ export const Navigation = () => (
               Profile
             </NavLink>
             <hr className="navbar-divider"/>
-            <a className="navbar-item" href="https://bulma.io/documentation/components/breadcrumb/">
+            <Link className="navbar-item" to="/auth/logout">
               Logout
-            </a>
+            </Link>
           </div>
         </div>
       </div>

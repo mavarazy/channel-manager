@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 import App from './App';
+import { clearToken } from "./reducers/apiFactory";
 import { getProperties } from "./reducers/properties.actions";
 
 import registerServiceWorker from './registerServiceWorker';
@@ -16,9 +17,20 @@ import promiseMiddleware from "redux-promise";
 import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import reducers from "./reducers";
+import appReducer from "./reducers";
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(promiseMiddleware, thunk)));
+const rootReducer = (state, action) => {
+  if (action.type === 'AUTH_LOGOUT') {
+    clearToken();
+    state = undefined
+  } else if (action.type === "AUTH_LOG_IN") {
+    store.dispatch(getProperties());
+  }
+
+  return appReducer(state, action)
+};
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(promiseMiddleware, thunk)));
 
 const loadState = Promise.all([
   store.dispatch(getProperties())

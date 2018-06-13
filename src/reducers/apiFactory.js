@@ -1,22 +1,19 @@
 import { toast } from 'react-toastify';
 
-const TOKEN_KEY = "JWT";
-const USER_LEVEL_KEY = "userLevel";
+const TOKEN_KEY = "token";
 
 const getToken = () => localStorage.getItem(TOKEN_KEY);
 
 export const restoreState = () => {
-  let jwtToken = localStorage.getItem(TOKEN_KEY);
-  let userLevel = localStorage.getItem(USER_LEVEL_KEY);
-  return jwtToken && userLevel ? ({ jwtToken, userLevel, isAuthenticated: true }) : { isAuthenticated: false };
+  const token = localStorage.getItem(TOKEN_KEY);
+  return token ? ({ token, isAuthenticated: true }) : { isAuthenticated: false };
 };
 
-export const saveToken = ({ jwtToken, userLevel }) => {
-  localStorage.setItem(TOKEN_KEY, jwtToken);
-  localStorage.setItem(USER_LEVEL_KEY, userLevel);
+export const saveToken = ({ token }) => {
+  localStorage.setItem(TOKEN_KEY, token);
 };
 
-export const cleanToken = () => {
+export const clearToken = () => {
   localStorage.clear();
 };
 
