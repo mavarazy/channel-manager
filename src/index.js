@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 
 import { ToastContainer } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
+
 import App from './App';
 import { getProperties } from "./reducers/properties.actions";
 

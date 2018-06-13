@@ -17,7 +17,7 @@ const CalendarRouter = () => (
         <Route path="/calendar/:propertyId?" render={props => <PropertiesDropdown {...props} toPath={(propertyId) => `/calendar/${propertyId}`}/>}/>
       </div>
     </section>
-    <section className="section">
+    <section className="section is-paddingless">
       <div className="container">
         <Route exact path="/calendar/:propertyId" component={Calendar}/>
       </div>

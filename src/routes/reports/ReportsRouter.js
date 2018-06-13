@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 import PropertyDropdown from "../../components/PropertiesDropdown";
-import PropertyReport from "./PropertyReport";
+import PropertyReport from "./YearReport";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -19,7 +19,7 @@ const ReportsRouter = () => (
         <Route path="/reports/:propertyId?" render={props => <PropertyDropdown {...props} toPath={propertyId => `/reports/${propertyId}/${CURRENT_YEAR}`}/>}/>
       </div>
     </section>
-    <section className="section">
+    <section className="section is-paddingless">
       <div className="container">
         <Route path="/reports/:propertyId/:year" component={PropertyReport}/>
       </div>
