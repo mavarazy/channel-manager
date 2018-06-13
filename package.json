@@ -26,7 +26,8 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.3.0",
     "redux-promise": "^0.6.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "selectn": "^1.1.2"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
@@ -39,7 +40,7 @@
   },
   "proxy": {
     "/api/analytics": {
-      "target": "https://0f80654b-74a1-4ec9-bbc4-b408a30f3f5c.mock.pstmn.io",
+      "target": "https://c24ef53b-1e61-41cb-bf85-24a5f8fb2745.mock.pstmn.io",
       "changeOrigin": true
     },
     "/api/availability": {

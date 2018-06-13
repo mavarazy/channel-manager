@@ -5,7 +5,7 @@ import { getProperties, getPropertyDetails } from "./properties.actions";
 const propertiesReducer = handleActions(
   {
     [getProperties]: produce((draft, { payload: properties }) => {
-      properties.map((property) => {
+      properties.forEach((property) => {
         const { propertyId } = property;
         draft[propertyId] = Object.assign(draft[propertyId] ||{}, property);
       })

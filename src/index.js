@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+
+import { ToastContainer } from 'react-toastify';
 
 import './index.css';
 import App from './App';
@@ -22,9 +24,12 @@ const loadState = Promise.all([
 
 loadState.then(() => {
   ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <Fragment>
+      <Provider store={store}>
+        <App />
+      </Provider>
+      <ToastContainer/>
+    </Fragment>,
     document.getElementById('root')
   );
 });

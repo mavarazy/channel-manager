@@ -5,7 +5,7 @@ import { produce } from "./produce";
 const bookingsReducer = handleActions(
   {
     [getBookings]: produce((draft, { payload: bookings }) => {
-      bookings.map((booking) => {
+      bookings.forEach((booking) => {
         const { bookingId } = booking;
         draft[bookingId] = Object.assign(booking, draft[bookingId]);
       })

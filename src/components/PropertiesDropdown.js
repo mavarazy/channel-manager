@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavLink, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { getProperties } from "../../reducers/properties.actions";
+import { getProperties } from "../reducers/properties.actions";
 
-const PropertiesDropdown = ({ properties, match: { params: { propertyId } } }) => (
+const PropertiesDropdown = ({ properties, toPath, match: { params: { propertyId } } }) => (
   <div className="control is-expanded">
     <div className="dropdown is-hoverable is-rounded">
       <div className="dropdown-trigger">
@@ -15,8 +15,7 @@ const PropertiesDropdown = ({ properties, match: { params: { propertyId } } }) =
       <div className="dropdown-menu" id="dropdown-menu" role="menu">
         <div className="dropdown-content">
           {properties.map(({ propertyId, address: { address } }) => (
-            <NavLink key={propertyId} activeClassName="is-active" className="dropdown-item"
-                     to={`/calendar/${propertyId}`}>
+            <NavLink key={propertyId} activeClassName="is-active" className="dropdown-item" to={toPath(propertyId)}>
               {address}
             </NavLink>
           ))}
