@@ -11,11 +11,17 @@ export const getBookings = createAction(
 export const getBookingDetails = createAction(
   "BOOKINGS_GET_DETAILS",
   async (bookingId) => await api.get(bookingId),
-  (id) => ({ id })
+  (bookingId) => ({ bookingId })
 );
 
 export const sendMessage = createAction(
   "BOOKINGS_SEND_MESSAGE",
   async (bookingId, message) => await api.post(`${bookingId}/messages`, message),
+  (bookingId) => ({ bookingId })
+);
+
+export const cancelBooking = createAction(
+  "BOOKINGS_CANCEL",
+  async (bookingId, reason) => await api.remove(bookingId, reason),
   (bookingId) => ({ bookingId })
 );

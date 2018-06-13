@@ -82,7 +82,7 @@ export const apiFactory = (base) => ({
       }
     ).then(processJsonResponse)
   ),
-  remove: (url = "",) => (
+  remove: (url = "", body = {}) => (
     fetch(
       `${base}/${url}`,
       {
@@ -90,7 +90,8 @@ export const apiFactory = (base) => ({
         headers: {
           Authentication: `Bearer ${getToken()}`,
           "Content-Type": "application/json"
-        }
+        },
+        body: JSON.stringify(body)
       }
     ).then(processJsonResponse)
   )

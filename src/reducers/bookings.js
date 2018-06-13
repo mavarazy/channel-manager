@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { getBookingDetails, getBookings, sendMessage } from "./bookings.actions";
+import { getBookingDetails, getBookings, sendMessage, cancelBooking } from "./bookings.actions";
 import { produce } from "./produce";
 
 const bookingsReducer = handleActions(
@@ -17,6 +17,9 @@ const bookingsReducer = handleActions(
     [sendMessage]: produce((draft, { payload: message, meta: { bookingId }}) => {
       draft[bookingId].messages.push(message);
     }),
+    [cancelBooking]: produce((draft, { payload, meta: { bookingId }}) => {
+      Object.assign(draft[bookingId], payload);
+    })
   },
   {}
 );

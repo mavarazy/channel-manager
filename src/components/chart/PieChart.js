@@ -15,7 +15,7 @@ const PieChartView = ({ data, conf }) => (
         <Tooltip />
       </PieChart>
     </ResponsiveContainer>
-    <div className="field is-grouped is-grouped-multiline is-centered">
+    <div className="field is-grouped is-grouped-centered">
       {
         data.map((entry, i) => (
           <div key={i} className="control">

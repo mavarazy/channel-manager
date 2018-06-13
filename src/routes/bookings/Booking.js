@@ -5,6 +5,7 @@ import Gravatar from 'react-gravatar'
 import { getBookingDetails, sendMessage } from "reducers/bookings.actions";
 import { bindActionCreators } from "redux";
 import { Field, Form, reduxForm } from "redux-form";
+import { Link } from "react-router-dom";
 import { connectAndLoad } from "../../components/connectAndLoad";
 
 const GuestDescription = ({ guest, guestCountry, contact: { email } }) => (
@@ -103,7 +104,7 @@ const BookingSendMessage = reduxForm({ form: "bookings-send-message" })(
   )
 );
 
-const Booking = ({ booking, sendMessage }) => (
+const Booking = ({ booking, sendMessage, match: { params: { bookingId } } }) => (
   <Fragment>
     <section className="section">
       <div className="columns">
@@ -118,6 +119,11 @@ const Booking = ({ booking, sendMessage }) => (
         <div className="column">
           <BookingContact {...booking}/>
         </div>
+      </div>
+    </section>
+    <section className="section">
+      <div className="container">
+        <Link className="button is-danger is-large" to={`/bookings/${bookingId}/cancel`}>Cancel</Link>
       </div>
     </section>
     <section className="section">
