@@ -21,7 +21,14 @@ const CancelForm = ({ handleSubmit, submitting }) => (
         </Field>
       </div>
     </div>
-    <button className={cx("button is-danger", { "is-loading": submitting })}>Cancel</button>
+    <div className="field is-grouped">
+      <div className="control">
+        <Link to={"/bookings"} className="button is-primary">Back</Link>
+      </div>
+      <div className="control">
+        <button className={cx("button is-danger", { "is-loading": submitting })}>Cancel Booking</button>
+      </div>
+    </div>
   </Form>
 );
 

@@ -4,6 +4,7 @@ import { Navigation } from "./components";
 import BookingsRouter from "./routes/bookings/BookingsRouter";
 import CalendarRouter from "./routes/calendar/CalendarRouter";
 import NotFound from "./routes/NotFound";
+import ProfileRouter from "./routes/profile/ProfileRouter";
 import PropertiesRouter from "./routes/properties/PropertiesRouter";
 import ReportsRouter from "./routes/reports/ReportsRouter";
 
@@ -17,6 +18,7 @@ const App = () => (
         <Route path="/properties" component={PropertiesRouter}/>
         <Route path="/calendar" component={CalendarRouter}/>
         <Route path="/reports" component={ReportsRouter}/>
+        <Route path="/profile" component={ProfileRouter}/>
         <Route component={NotFound}/>
       </Switch>
     </Fragment>

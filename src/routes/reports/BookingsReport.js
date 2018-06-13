@@ -1,9 +1,5 @@
 import React, { Fragment } from "react";
 import moment from "moment";
-import { bindActionCreators } from "redux";
-import { Link } from "react-router-dom";
-import { connectAndLoad } from "../../components/connectAndLoad";
-import { getBookings } from "../../reducers/bookings.actions";
 
 const BookingDate = ({ date }) => {
   const dateMoment = moment(date, "YYYYMMDD");
