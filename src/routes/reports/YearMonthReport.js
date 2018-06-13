@@ -6,7 +6,7 @@ import { getMonthReport } from "../../reducers/reports.actions";
 import BookingsReport from "./BookingsReport";
 import PropertyReport from "./PropertyReport";
 
-const YearMonthReport = ({ report }) => (
+const YearMonthReport = (report) => (
   <Fragment>
     <section className="section">
       <PropertyReport report={report}/>
@@ -17,7 +17,7 @@ const YearMonthReport = ({ report }) => (
   </Fragment>
 );
 
-const mapStateToProps = ({ reports }, { match: { params: { propertyId, year, month }}}) => ({ report: selectn(`${propertyId}.${year}.months.${month}`, reports) });
+const mapStateToProps = ({ reports }, { match: { params: { propertyId, year, month }}}) => selectn(`${propertyId}.${year}.months.${month}`, reports);
 const mapDispatchToProps = (dispatch, { match: { params: { propertyId, year, month }}}) => bindActionCreators(
   {
     getMonthReport: () => getMonthReport(propertyId, year, month),

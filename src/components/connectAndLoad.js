@@ -28,14 +28,15 @@ const withLoader = (loadingTasks, TargetComponent) => {
     }
 
     render() {
-      if (this.state.isLoading) {
+      const { data, ...others } = this.props;
+      if (this.state.isLoading || data === undefined) {
         return (
           <div className="container has-text-centered">
             <div className="button is-large is-primary is-loading is-outlined is-inverted"/>
           </div>
         )
       } else {
-        return <TargetComponent {... this.props}/>
+        return <TargetComponent {...data} {... others}/>
       }
     }
   }
@@ -43,6 +44,14 @@ const withLoader = (loadingTasks, TargetComponent) => {
   return LoadingComponent;
 };
 
+const mapStateToPropsWithData = (mapStateToProps) => (state, props) => {
+  const data = mapStateToProps(state, props);
+  return { data }
+};
+
 export const connectAndLoad = (mapStateToProps, mapDispatchToProps, loading, Component) => (
-  connect(mapStateToProps, mapDispatchToProps)(withLoader(loading, Component))
+  connect(
+    mapStateToPropsWithData(mapStateToProps),
+    mapDispatchToProps
+  )(withLoader(loading, Component))
 );
