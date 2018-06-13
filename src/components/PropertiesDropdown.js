@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { getProperties } from "../reducers/properties.actions";
 
 const PropertiesDropdown = ({ properties, toPath, match: { params: { propertyId } } }) => (
-  <div className="control is-expanded">
+  <div className="control">
     <div className="dropdown is-hoverable is-rounded">
       <div className="dropdown-trigger">
         <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">

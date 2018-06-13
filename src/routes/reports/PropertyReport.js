@@ -14,10 +14,10 @@ const BOOKING_CHART_CONF = {
 
 const PropertyReport = ({ report: { channel, summary } }) => {
   const pieChartData = Object.entries(channel).map(([ channel, statistics]) => Object.assign({ channel }, statistics ));
-  const occupied = (summary.available === 0 ? 0 : summary.booked / summary.available) * 100;
+  const occupied = (summary.available === 0 ? 0 : summary.booked / (summary.available + summary.booked)) * 100;
   const available = (summary.available + summary.booked) / (summary.available + summary.booked + summary.blocked) * 100;
   return (
-    <Fragment>
+    <div className="container">
       <div className="columns">
         <div className="column has-text-centered">
           <h4 className="title">Earnings - <strong>{summary.total}</strong></h4>
@@ -34,7 +34,7 @@ const PropertyReport = ({ report: { channel, summary } }) => {
           <h5 className="subtitle is-marginless"><strong>Available:</strong> {available.toFixed(1)} %</h5>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 
