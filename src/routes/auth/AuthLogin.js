@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Field, Form, reduxForm } from "redux-form";
+import { Link } from "react-router-dom";
 import { login } from "../../reducers/auth.actions";
 
 const LoginForm = ({ handleSubmit, submitting }) => (
@@ -30,9 +31,18 @@ const LoginForm = ({ handleSubmit, submitting }) => (
         />
       </div>
     </div>
-    <button className={cx("button is-primary", { "is-loading": submitting })} type="submit">
-      Login
-    </button>
+    <div className="columns">
+      <div className="column">
+        <button className={cx("button is-primary", { "is-loading": submitting })} type="submit">
+          Login
+        </button>
+      </div>
+      <div className="column">
+        <Link to="/auth/register" className="is-link is-pulled-right">
+          Create account
+        </Link>
+      </div>
+    </div>
   </Form>
 );
 

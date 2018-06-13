@@ -7,7 +7,7 @@ const AuthLogout = ({ logout, history }) => {
   logout();
   setTimeout(() => {
     history.push("/")
-  }, 3000);
+  }, 2000);
   return (
     <Fragment>
       <h1 className="title">Goodbye</h1>

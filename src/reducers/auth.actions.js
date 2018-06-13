@@ -15,6 +15,9 @@ export const register = createAction(
 
 export const logout = createAction(
   "AUTH_LOGOUT",
-  async () => ({})
+  async () => {
+    clearToken();
+    return ({})
+  }
 );
 

@@ -1,51 +1,53 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
+import { handleActions, combineActions } from "redux-actions";
 
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-import './index.css';
-
-import App from './App';
-import { clearToken } from "./reducers/apiFactory";
-import { getProperties } from "./reducers/properties.actions";
-
-import registerServiceWorker from './registerServiceWorker';
+import { applyMiddleware, createStore } from "redux";
 
 import { composeWithDevTools } from "redux-devtools-extension";
 import promiseMiddleware from "redux-promise";
 import thunk from "redux-thunk";
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
+
+import App from './App';
+import './index.css';
 import appReducer from "./reducers";
+import { login, logout, register } from "./reducers/auth.actions";
+import { getProperties } from "./reducers/properties.actions";
 
-const rootReducer = (state, action) => {
-  if (action.type === 'AUTH_LOGOUT') {
-    clearToken();
-    state = undefined
-  } else if (action.type === "AUTH_LOG_IN") {
-    store.dispatch(getProperties());
-  }
+import registerServiceWorker from './registerServiceWorker';
 
-  return appReducer(state, action)
-};
+const loader = handleActions(
+  {
+    [combineActions(login, register)]: (state) => {
+      store.dispatch(getProperties());
+      return state;
+    },
+    [logout]: () => undefined,
+  },
+  {}
+);
+
+const rootReducer = (state, action) => appReducer(loader(state, action), action);
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(promiseMiddleware, thunk)));
 
-const loadState = Promise.all([
-  store.dispatch(getProperties())
-]);
+const loadingTask = store.getState().auth.isAuthenticated ? store.dispatch(getProperties()) : Promise.resolve(true);
 
-loadState.then(() => {
+loadingTask.then(() => {
   ReactDOM.render(
     <Fragment>
       <Provider store={store}>
-        <App />
+        <App/>
       </Provider>
       <ToastContainer/>
     </Fragment>,
     document.getElementById('root')
   );
 });
+
 
 registerServiceWorker();
