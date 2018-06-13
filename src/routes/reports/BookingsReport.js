@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import moment from "moment";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
@@ -47,7 +47,10 @@ const BookingReportTable = ({ bookings }) => (
 );
 
 const BookingsReport = ({ bookings }) => (
-  <BookingReportTable bookings={bookings}/>
+  <Fragment>
+    <h4 className="title">Bookings</h4>
+    <BookingReportTable bookings={bookings}/>
+  </Fragment>
 );
 
 export default BookingsReport;

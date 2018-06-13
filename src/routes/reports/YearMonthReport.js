@@ -8,10 +8,12 @@ import PropertyReport from "./PropertyReport";
 
 const YearMonthReport = ({ report }) => (
   <Fragment>
-    <PropertyReport report={report}/>
-    <div className="container">
-    <BookingsReport bookings={report.bookings || []}/>
-    </div>
+    <section className="section">
+      <PropertyReport report={report}/>
+    </section>
+    <section className="section">
+      <BookingsReport bookings={report.bookings || []}/>
+    </section>
   </Fragment>
 );
 
