@@ -3,12 +3,16 @@ import selectn from "selectn";
 import { bindActionCreators } from "redux";
 import { getListingDetails } from "../../../reducers/listings.actions";
 import { connectAndLoad } from "../../../components/connectAndLoad";
+import ListingDescription from "./ListingDescription";
 import ListingPhotos from "./ListingPhotos";
 
-const ListingDetails = ({ photos }) => (
+const ListingDetails = ({ photos, description }) => (
   <Fragment>
     <h3 className="subtitle">Photos</h3>
     <ListingPhotos photos={photos}/>
+    <hr/>
+    <h3 className="subtitle">Title & Description</h3>
+    <ListingDescription description={description}/>
   </Fragment>
 );
 
