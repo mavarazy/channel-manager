@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { connectAndLoad } from "../../components/connectAndLoad";
 import { getBookings } from "../../reducers/bookings.actions";
 
+import { faEye } from '@fortawesome/fontawesome-free-solid'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+
 const BookingDate = ({ date }) => {
   const dateMoment = moment(date, "YYYYMMDD");
   return (
@@ -14,6 +17,14 @@ const BookingDate = ({ date }) => {
 
 const BookingRow = ({ bookingId, reservationId, checkIn, checkOut, status, paymentStatus, channel, guest, guestCountry, listing, inbox }) => (
   <tr>
+    <td>
+      <Link to={`/bookings/${bookingId}`}>
+        <span className="icon">
+          <FontAwesomeIcon icon={faEye}/>
+        </span>
+      </Link><br/>
+      <small>inbox <strong>{inbox}</strong></small>
+    </td>
     <td>
       <BookingDate date={checkIn}/><br/>
       <BookingDate date={checkOut}/>
@@ -31,7 +42,6 @@ const BookingRow = ({ bookingId, reservationId, checkIn, checkOut, status, payme
       {guestCountry}
     </td>
     <td>{listing.address.address}</td>
-    <td><Link to={`/bookings/${bookingId}`}>{inbox}</Link></td>
   </tr>
 );
 
@@ -39,12 +49,12 @@ const BookingTable = ({ bookings }) => (
   <table className="table has-text-centered is-fullwidth">
     <thead>
     <tr>
+      <th></th>
       <th>Dates</th>
       <th>Booking</th>
       <th>Status</th>
       <th>Guest</th>
       <th>Listing</th>
-      <th>Inbox</th>
     </tr>
     </thead>
     <tbody>
