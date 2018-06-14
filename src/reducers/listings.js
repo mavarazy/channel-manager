@@ -1,6 +1,6 @@
 import { handleActions } from "redux-actions";
 import { produce } from "./produce";
-import { getListings, getListingDetails } from "./listings.actions";
+import { getListings, getListingDetails, activateListing, deActivateListing } from "./listings.actions";
 
 const listingsReducer = handleActions(
   {
@@ -13,6 +13,12 @@ const listingsReducer = handleActions(
     [getListingDetails]: produce((draft, { payload: listing }) => {
       const { listingId } = listing;
       draft[listingId] = Object.assign(draft[listingId] || {}, listing);
+    }),
+    [activateListing]: produce((draft, { meta: { listingId }}) => {
+      draft[listingId].isActive = true;
+    }),
+    [deActivateListing]: produce((draft, { meta: { listingId }}) => {
+      draft[listingId].isActive = false;
     }),
   },
   {}

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getListings } from "../../reducers/listings.actions";
+import cx from "classnames";
+import { getListings, activateListing, deActivateListing } from "../../reducers/listings.actions";
+
+const ListingContext = React.createContext({ toggleActive: () => {} });
 
 const ListingChannelStatus = ({ status, link }) => {
   if (status === "notConnected") {
@@ -15,12 +18,36 @@ const ListingChannelStatus = ({ status, link }) => {
   }
 };
 
-const ListingActive = ({ isActive, toggleActive }) => (
-  <div className="field">
-    <input type="checkbox" className="switch is-rtl is-success" checked={isActive} onChange={toggleActive}/>
-    <label/>
-  </div>
-);
+class ListingActive extends Component {
+  state = { isLoading: false };
+
+  handleToggle = (toggleActive) => {
+    this.setState({ isLoading: true });
+    const { listingId, isActive } = this.props;
+    toggleActive(listingId, !isActive).then(() => this.setState({ isLoading: false }))
+  };
+
+  render() {
+    const { isActive, listingId } = this.props;
+    return (
+      <ListingContext.Consumer>
+        {({ toggleActive }) => (
+          <div className="field">
+            <input id={listingId}
+              type="checkbox"
+              className={cx("switch is-rtl is-rounded", { "is-success": isActive, "is-info": this.state.isLoading })}
+              checked={isActive}
+              onChange={() => this.handleToggle(toggleActive)}
+              disabled={this.state.isLoading}
+            />
+            <label htmlFor={listingId}/>
+          </div>
+        )}
+      </ListingContext.Consumer>
+    );
+  }
+}
+
 
 const ListingRow = ({ listingId, address, channels: { airBnB, booking, avito }, isActive }) => (
   <tr>
@@ -28,7 +55,7 @@ const ListingRow = ({ listingId, address, channels: { airBnB, booking, avito }, 
     <td><ListingChannelStatus {...airBnB}/></td>
     <td><ListingChannelStatus {...booking}/></td>
     <td><ListingChannelStatus {...avito}/></td>
-    <td><ListingActive isActive={isActive}/></td>
+    <td><ListingActive listingId={listingId} isActive={isActive}/></td>
   </tr>
 );
 
@@ -49,11 +76,26 @@ const ListingTable = ({ listings }) => (
   </table>
 );
 
-const Listings = ({ listings }) => (
-  <ListingTable listings={listings}/>
-);
+const Listings = ({ listings, activateListing, deActivateListing }) => {
+  const context = {
+    toggleActive: (listingId, isActive) => isActive ? activateListing(listingId) : deActivateListing(listingId)
+  };
+
+  return (
+    <ListingContext.Provider value={context}>
+      <ListingTable listings={listings}/>
+    </ListingContext.Provider>
+  );
+};
 
 const mapStateToProps = ({ listings }) => ({ listings: Object.values(listings) });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ getListings }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    getListings,
+    activateListing,
+    deActivateListing
+  },
+  dispatch
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Listings);
