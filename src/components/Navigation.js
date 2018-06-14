@@ -24,8 +24,8 @@ export const Navigation = () => (
         <NavLink className="navbar-item" activeClassName="is-active" to="/reports">
           Reports
         </NavLink>
-        <NavLink className="navbar-item" activeClassName="is-active" to="/properties">
-          Properties
+        <NavLink className="navbar-item" activeClassName="is-active" to="/listings">
+          Listings
         </NavLink>
       </div>
 

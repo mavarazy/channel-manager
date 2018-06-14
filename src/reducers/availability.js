@@ -2,12 +2,12 @@ import { handleActions, combineActions } from "redux-actions";
 import { getAvailability, releaseDates, lockDates } from "./availability.actions";
 import { produce } from "./produce";
 
-const propertyAvailabilityReducer = handleActions(
+const listingAvailabilityReducer = handleActions(
   {
-    [getAvailability]: produce((draft, { payload: propertyState }) => {
-      propertyState.forEach(propertyState => {
-        const { date } = propertyState;
-        draft[date] = propertyState
+    [getAvailability]: produce((draft, { payload: listingAvailability }) => {
+      listingAvailability.forEach(availability => {
+        const { date } = availability;
+        draft[date] = availability
       })
     }),
     [releaseDates]: produce((draft, { meta: { fromTo: { from, to }} }) => {
@@ -24,8 +24,8 @@ const propertyAvailabilityReducer = handleActions(
 const availabilityReducer = handleActions(
   {
     [combineActions(getAvailability, releaseDates, lockDates)]: produce((draft, action) => {
-      const { meta: { propertyId }} = action;
-      draft[propertyId] = propertyAvailabilityReducer(draft[propertyId], action)
+      const { meta: { listingId }} = action;
+      draft[listingId] = listingAvailabilityReducer(draft[listingId], action)
     }),
   },
   {}

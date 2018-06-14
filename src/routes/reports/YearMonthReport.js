@@ -4,12 +4,12 @@ import { bindActionCreators } from "redux";
 import { connectAndLoad } from "../../components/connectAndLoad";
 import { getMonthReport } from "../../reducers/reports.actions";
 import BookingsReport from "./BookingsReport";
-import PropertyReport from "./PropertyReport";
+import ListingReport from "./ListingReport";
 
 const YearMonthReport = (report) => (
   <Fragment>
     <section className="section">
-      <PropertyReport report={report}/>
+      <ListingReport report={report}/>
     </section>
     <section className="section">
       <BookingsReport bookings={report.bookings || []}/>
@@ -17,10 +17,10 @@ const YearMonthReport = (report) => (
   </Fragment>
 );
 
-const mapStateToProps = ({ reports }, { match: { params: { propertyId, year, month }}}) => selectn(`${propertyId}.${year}.months.${month}`, reports);
-const mapDispatchToProps = (dispatch, { match: { params: { propertyId, year, month }}}) => bindActionCreators(
+const mapStateToProps = ({ reports }, { match: { params: { listingId, year, month }}}) => selectn(`${listingId}.${year}.months.${month}`, reports);
+const mapDispatchToProps = (dispatch, { match: { params: { listingId, year, month }}}) => bindActionCreators(
   {
-    getMonthReport: () => getMonthReport(propertyId, year, month),
+    getMonthReport: () => getMonthReport(listingId, year, month),
   },
   dispatch
 );

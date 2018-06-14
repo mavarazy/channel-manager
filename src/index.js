@@ -16,14 +16,14 @@ import App from './App';
 import './index.css';
 import appReducer from "./reducers";
 import { login, logout, register } from "./reducers/auth.actions";
-import { getProperties } from "./reducers/properties.actions";
+import { getListings } from "./reducers/listings.actions";
 
 import registerServiceWorker from './registerServiceWorker';
 
 const loader = handleActions(
   {
     [combineActions(login, register)]: (state) => {
-      store.dispatch(getProperties());
+      store.dispatch(getListings());
       return state;
     },
     [logout]: () => undefined,
@@ -35,7 +35,7 @@ const rootReducer = (state, action) => appReducer(loader(state, action), action)
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(promiseMiddleware, thunk)));
 
-const loadingTask = store.getState().auth.isAuthenticated ? store.dispatch(getProperties()) : Promise.resolve(true);
+const loadingTask = store.getState().auth.isAuthenticated ? store.dispatch(getListings()) : Promise.resolve(true);
 
 loadingTask.then(() => {
   ReactDOM.render(

@@ -1297,6 +1297,10 @@ bulma-pageloader@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/bulma-pageloader/-/bulma-pageloader-1.0.1.tgz#9fcede4a15ac12716907d500a6ade6311d19f858"
 
+bulma-switch@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/bulma-switch/-/bulma-switch-1.0.2.tgz#23c9727c0b96d619a52912601b027232faed9fc1"
+
 bulma@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.1.tgz#73c2e3b2930c90cc272029cbd19918b493fca486"

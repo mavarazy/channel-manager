@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 import Calendar from "./Calendar";
-import PropertiesDropdown from "../../components/PropertiesDropdown";
+import ListingsSelect from "../../components/ListingsSelect";
 
 const CalendarRouter = () => (
   <Fragment>
@@ -14,12 +14,12 @@ const CalendarRouter = () => (
     </div>
     <section className="section">
       <div className="container">
-        <Route path="/calendar/:propertyId?" render={props => <PropertiesDropdown {...props} toPath={(propertyId) => `/calendar/${propertyId}`}/>}/>
+        <Route path="/calendar/:listingId?" render={props => <ListingsSelect {...props} toPath={(listingId) => `/calendar/${listingId}`}/>}/>
       </div>
     </section>
     <section className="section is-paddingless">
       <div className="container">
-        <Route exact path="/calendar/:propertyId" component={Calendar}/>
+        <Route exact path="/calendar/:listingId" component={Calendar}/>
       </div>
     </section>
   </Fragment>

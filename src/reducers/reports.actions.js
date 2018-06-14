@@ -5,12 +5,12 @@ const api = apiFactory("/api/analytics");
 
 export const getYearReport = createAction(
   "ANALYTICS_YEAR_GET",
-  async (propertyId, year) => await api.get(`${propertyId}/${year}`),
-  (propertyId, year) => ({ propertyId, year })
+  async (listingId, year) => await api.get(`${listingId}/${year}`),
+  (listingId, year) => ({ listingId, year })
 );
 
 export const getMonthReport = createAction(
   "ANALYTICS_MONTH_GET",
-  async (propertyId, year, month) => await api.get(`${propertyId}/${year}/${month}`),
-  (propertyId, year, month) => ({ propertyId, year, month })
+  async (listingId, year, month) => await api.get(`${listingId}/${year}/${month}`),
+  (listingId, year, month) => ({ listingId, year, month })
 );

@@ -12,7 +12,7 @@ const BOOKING_CHART_CONF = {
   fill: "#8884d8"
 };
 
-const PropertyReport = ({ report: { channel, summary} }) => {
+const ListingReport = ({ report: { channel, summary} }) => {
   const pieChartData = Object.entries(channel).map(([channel, statistics]) => Object.assign({ channel }, statistics));
   const occupied = (summary.available === 0 ? 0 : summary.booked / (summary.available + summary.booked)) * 100;
   const available = (summary.available + summary.booked) / (summary.available + summary.booked + summary.blocked) * 100;
@@ -36,4 +36,4 @@ const PropertyReport = ({ report: { channel, summary} }) => {
   );
 };
 
-export default PropertyReport;
+export default ListingReport;

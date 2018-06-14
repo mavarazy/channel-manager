@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const RANGE = [ -2, -1, 0, 1, 2, 3];
 
-const YearNav = ({ match: { params: { propertyId, year } } }) => (
+const YearNav = ({ match: { params: { listingId, year } } }) => (
   <div className="control">
     <div className="dropdown is-hoverable is-rounded">
       <div className="dropdown-trigger">
@@ -16,7 +16,7 @@ const YearNav = ({ match: { params: { propertyId, year } } }) => (
           {RANGE.map(v => {
             const tYear = parseInt(year, 10) + v;
             return (
-              <NavLink key={v} activeClassName="is-active" className="dropdown-item" to={`/reports/${propertyId}/${tYear}`}>
+              <NavLink key={v} activeClassName="is-active" className="dropdown-item" to={`/reports/${listingId}/${tYear}`}>
                 {tYear}
               </NavLink>
             )

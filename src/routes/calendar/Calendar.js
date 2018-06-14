@@ -154,15 +154,15 @@ class Calendar extends Component {
   }
 }
 
-const mapStateToProps = ({ availability }, { match: { params: { propertyId } } }) => {
-  const calendar = Object.values(availability[propertyId] || {});
-  return { calendar, propertyId };
+const mapStateToProps = ({ availability }, { match: { params: { listingId } } }) => {
+  const calendar = Object.values(availability[listingId] || {});
+  return { calendar, listingId };
 };
-const mapDispatchToProps = (dispatch, { match: { params: { propertyId } } }) => bindActionCreators(
+const mapDispatchToProps = (dispatch, { match: { params: { listingId } } }) => bindActionCreators(
   {
-    getAvailability: () => getAvailability(propertyId),
-    lockDates: (fromTo) => lockDates(propertyId, fromTo),
-    releaseDates: (fromTo) => releaseDates(propertyId, fromTo)
+    getAvailability: () => getAvailability(listingId),
+    lockDates: (fromTo) => lockDates(listingId, fromTo),
+    releaseDates: (fromTo) => releaseDates(listingId, fromTo)
   },
   dispatch
 );

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
-import PropertyDropdown from "../../components/PropertiesDropdown";
+import ListingsSelect from "../../components/ListingsSelect";
 import YearMonthNav from "./YearMonthNav";
 import YearMonthReport from "./YearMonthReport";
 import YearNav from "./YearNav";
@@ -20,16 +20,16 @@ const ReportsRouter = () => (
     <section className="section">
       <div className="container">
         <div className="field has-addons">
-          <Route path="/reports/:propertyId/:year" component={YearNav}/>
-          <Route path="/reports/:propertyId?" render={props => <PropertyDropdown {...props} toPath={propertyId => `/reports/${propertyId}/${CURRENT_YEAR}`}/>}/>
+          <Route path="/reports/:listingId/:year" component={YearNav}/>
+          <Route path="/reports/:listingId?" render={props => <ListingsSelect {...props} toPath={listingId => `/reports/${listingId}/${CURRENT_YEAR}`}/>}/>
         </div>
-        <Route path="/reports/:propertyId/:year" component={YearMonthNav}/>
+        <Route path="/reports/:listingId/:year" component={YearMonthNav}/>
       </div>
     </section>
     <section className="section is-paddingless">
       <div className="container">
-        <Route path="/reports/:propertyId/:year" component={YearReport} exact/>
-        <Route path="/reports/:propertyId/:year/:month" component={YearMonthReport} exact/>
+        <Route path="/reports/:listingId/:year" component={YearReport} exact/>
+        <Route path="/reports/:listingId/:year/:month" component={YearMonthReport} exact/>
       </div>
     </section>
   </Fragment>

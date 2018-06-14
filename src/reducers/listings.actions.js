@@ -1,15 +1,15 @@
 import { createAction } from "redux-actions";
 import apiFactory from "./apiFactory";
 
-const api = apiFactory("/api/properties");
+const api = apiFactory("/api/listings");
 
-export const getProperties = createAction(
-  "PROPERTIES_GET",
+export const getListings = createAction(
+  "LISTING_GET",
   async () => await api.get()
 );
 
-export const getPropertyDetails = createAction(
-  "PROPERTIES_GET_DETAILS",
+export const getListingDetails = createAction(
+  "LISTING_GET_DETAILS",
   async (bookingId) => await api.get(bookingId),
   (id) => ({ id })
 );

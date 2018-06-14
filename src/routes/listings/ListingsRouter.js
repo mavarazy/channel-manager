@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
-import Properties from "./Properties";
+import Listings from "./Listings";
 
-const PropertiesRouter = () => (
+const ListingsRouter = () => (
   <Fragment>
     <div className="hero is-success">
       <div className="hero-body">
         <div className="container">
-          <h1 className="title">Properties</h1>
+          <h1 className="title">Listings</h1>
         </div>
       </div>
     </div>
@@ -15,7 +15,7 @@ const PropertiesRouter = () => (
       <div className="hero-body">
         <div className="container">
           <Switch>
-            <Route exact path="/properties" component={Properties}/>
+            <Route exact path="/listings" component={Listings}/>
           </Switch>
         </div>
       </div>
@@ -23,4 +23,4 @@ const PropertiesRouter = () => (
   </Fragment>
 );
 
-export default PropertiesRouter;
+export default ListingsRouter;
