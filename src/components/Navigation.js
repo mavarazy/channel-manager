@@ -1,11 +1,6 @@
-import {
-  faUserCircle,
-  faSignOutAlt
-} from '@fortawesome/fontawesome-free-solid'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { BookingsIcon, CalendarIcon, ReportsIcon, ListingsIcon, ProfileIcon, LogoutIcon, UserIcon } from "./icon";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { BookingsIcon, CalendarIcon, ReportsIcon, ListingsIcon, ProfileIcon, LogoutIcon, UserIcon } from "./icon";
 
 export const Navigation = () => (
   <nav className="navbar is-spaced" aria-label="main navigation">

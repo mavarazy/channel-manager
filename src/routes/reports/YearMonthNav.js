@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import ListNavigation from "../../components/ListNavigation";
 
 const YearMonthNav = ({ match: { params: { year, listingId }}}) => (

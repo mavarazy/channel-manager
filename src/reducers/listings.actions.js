@@ -10,7 +10,7 @@ export const getListings = createAction(
 
 export const getListingDetails = createAction(
   "LISTING_GET_DETAILS",
-  async (listingId) => await api.get(listingId),
+  async (listingId) => await api.get(`${listingId}/details`),
   (listingId) => ({ listingId })
 );
 
