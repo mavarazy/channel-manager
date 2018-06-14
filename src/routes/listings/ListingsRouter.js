@@ -1,7 +1,11 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
+import ListingAvailability from "./ListingAvailability";
+import ListingBooking from "./ListingBooking";
+import ListingDetails from "./ListingDetails";
+import ListingPricing from "./ListingPricing";
 import Listings from "./Listings";
-import Listing from "./Listing";
+import ListingViewNav from "./ListingViewNav";
 
 const ListingsRouter = () => (
   <Fragment>
@@ -14,16 +18,24 @@ const ListingsRouter = () => (
         </div>
       </div>
     </div>
-    <div className="hero">
-      <div className="hero-body">
-        <div className="container">
-          <Switch>
-            <Route exact path="/listings" component={Listings}/>
-            <Route path="/listings/:listingId" component={Listing}/>
-          </Switch>
-        </div>
+    <section className="section">
+      <div className="container">
+        <Switch>
+          <Route exact path="/listings" component={Listings}/>
+          <Route path="/listings/:listingId">
+            <Fragment>
+              <Route path="/listings/:listingId" component={ListingViewNav}/>
+              <Switch>
+                <Route path="/listings/:listingId/availability" component={ListingAvailability}/>
+                <Route path="/listings/:listingId/details" component={ListingDetails}/>
+                <Route path="/listings/:listingId/booking" component={ListingBooking}/>
+                <Route path="/listings/:listingId/pricing" component={ListingPricing}/>
+              </Switch>
+            </Fragment>
+          </Route>
+        </Switch>
       </div>
-    </div>
+    </section>
   </Fragment>
 );
 

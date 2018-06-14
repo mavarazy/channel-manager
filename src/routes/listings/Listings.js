@@ -54,7 +54,7 @@ class ListingActive extends Component {
 const ListingRow = ({ listingId, address, channels: { airBnB, booking, avito }, isActive }) => (
   <tr>
     <td>
-      <Link to={`/listings/${listingId}`}>
+      <Link to={`/listings/${listingId}/details`}>
         <ViewIcon/>
       </Link>
     </td>
