@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import cx from "classnames";
+import { Link } from "react-router-dom";
+import { ViewIcon } from "../../components/icon";
 import { getListings, activateListing, deActivateListing } from "../../reducers/listings.actions";
 
 const ListingContext = React.createContext({ toggleActive: () => {} });
@@ -51,6 +53,11 @@ class ListingActive extends Component {
 
 const ListingRow = ({ listingId, address, channels: { airBnB, booking, avito }, isActive }) => (
   <tr>
+    <td>
+      <Link to={`/listings/${listingId}`}>
+        <ViewIcon/>
+      </Link>
+    </td>
     <td>{address.address}</td>
     <td><ListingChannelStatus {...airBnB}/></td>
     <td><ListingChannelStatus {...booking}/></td>
@@ -63,6 +70,7 @@ const ListingTable = ({ listings }) => (
   <table className="table has-text-centered is-fullwidth">
     <thead>
     <tr>
+      <th/>
       <th>Address</th>
       <th>AirBnB</th>
       <th>Booking</th>

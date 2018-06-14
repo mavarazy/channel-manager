@@ -6,6 +6,7 @@ import { getBookingDetails, sendMessage } from "reducers/bookings.actions";
 import { bindActionCreators } from "redux";
 import { Field, Form, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
+
 import { connectAndLoad } from "../../components/connectAndLoad";
 
 const GuestDescription = ({ guest, guestCountry, contact: { email } }) => (

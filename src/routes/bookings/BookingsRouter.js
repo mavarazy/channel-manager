@@ -9,7 +9,9 @@ const BookingsRouter = () => (
     <div className="hero is-primary">
       <div className="hero-body">
         <div className="container">
-          <h1 className="title">Bookings</h1>
+          <h1 className="title">
+            Bookings
+          </h1>
         </div>
       </div>
     </div>

@@ -1,13 +1,9 @@
 import {
-  faBookmark,
-  faCalendar,
-  faChartLine,
-  faHome,
   faUserCircle,
-  faUserCog,
   faSignOutAlt
 } from '@fortawesome/fontawesome-free-solid'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { BookingsIcon, CalendarIcon, ReportsIcon, ListingsIcon, ProfileIcon, LogoutIcon, UserIcon } from "./icon";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -24,31 +20,23 @@ export const Navigation = () => (
     <div className="navbar-menu">
       <div className="navbar-start">
         <NavLink className="navbar-item" activeClassName="is-active has-text-link" to="/bookings">
-          <span className="icon">
-            <FontAwesomeIcon icon={faBookmark}/>
-          </span>
+          <BookingsIcon/>
           <span>
             Bookings
           </span>
         </NavLink>
         <NavLink className="navbar-item" activeClassName="is-active has-text-link" to="/calendar">
-          <span className="icon">
-            <FontAwesomeIcon icon={faCalendar}/>
-          </span>
+          <CalendarIcon/>
           <span>Calendar</span>
         </NavLink>
         <NavLink className="navbar-item" activeClassName="is-active has-text-link" to="/reports">
-          <span className="icon">
-            <FontAwesomeIcon icon={faChartLine}/>
-          </span>
+          <ReportsIcon/>
           <span>
             Reports
           </span>
         </NavLink>
         <NavLink className="navbar-item" activeClassName="is-active has-text-link" to="/listings">
-          <span className="icon">
-            <FontAwesomeIcon icon={faHome}/>
-          </span>
+          <ListingsIcon/>
           <span>
             Listings
           </span>
@@ -58,22 +46,18 @@ export const Navigation = () => (
       <div className="navbar-end">
         <div className="navbar-item has-dropdown is-hoverable">
           <div className="navbar-link">
-            <FontAwesomeIcon icon={faUserCircle} size="2x"/>
+            <UserIcon size="2x"/>
           </div>
           <div className="navbar-dropdown is-boxed is-right">
             <NavLink className="navbar-item" activeClassName="is-active" to="/profile">
-              <span className="icon">
-                <FontAwesomeIcon icon={faUserCog}/>
-              </span>
+              <ProfileIcon/>
               <span>
                 Profile
               </span>
             </NavLink>
             <hr className="navbar-divider"/>
             <Link className="navbar-item" to="/auth/logout">
-              <span className="icon">
-                <FontAwesomeIcon icon={faSignOutAlt}/>
-              </span>
+              <LogoutIcon/>
               <span>
                 Logout
               </span>

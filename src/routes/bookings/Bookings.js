@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import { connectAndLoad } from "../../components/connectAndLoad";
 import { getBookings } from "../../reducers/bookings.actions";
-
-import { faEye } from '@fortawesome/fontawesome-free-solid'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { ViewIcon } from "../../components/icon";
 
 const BookingDate = ({ date }) => {
   const dateMoment = moment(date, "YYYYMMDD");
@@ -19,9 +17,7 @@ const BookingRow = ({ bookingId, reservationId, checkIn, checkOut, status, payme
   <tr>
     <td>
       <Link to={`/bookings/${bookingId}`}>
-        <span className="icon">
-          <FontAwesomeIcon icon={faEye}/>
-        </span>
+        <ViewIcon/>
       </Link><br/>
       <small>inbox <strong>{inbox}</strong></small>
     </td>
