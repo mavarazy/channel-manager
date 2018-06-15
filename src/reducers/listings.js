@@ -1,6 +1,12 @@
 import { handleActions, combineActions } from "redux-actions";
 import { produce } from "./produce";
-import { getListings, getListingDetails, activateListing, deActivateListing } from "./listings.actions";
+import {
+  getListings,
+  getListingDetails,
+  activateListing,
+  deActivateListing,
+  getListingBookingSettings
+} from "./listings.actions";
 
 const listingReducer = handleActions(
   {
@@ -12,6 +18,9 @@ const listingReducer = handleActions(
     }),
     [deActivateListing]: produce((draft) => {
       draft.isActive = false;
+    }),
+    [getListingBookingSettings]: produce((draft, { payload: bookingSettings }) => {
+      draft.bookingSettings = bookingSettings;
     }),
   },
   {}
@@ -25,7 +34,7 @@ const listingsReducer = handleActions(
         draft[listingId] = Object.assign(draft[listingId] ||{}, listing);
       })
     }),
-    [combineActions(getListingDetails, activateListing, deActivateListing)]: produce((draft, action) => {
+    [combineActions(getListingDetails, activateListing, deActivateListing, getListingBookingSettings)]: produce((draft, action) => {
       const { meta: { listingId }} = action;
       draft[listingId] = listingReducer(draft[listingId], action);
     }),

@@ -14,6 +14,12 @@ export const getListingDetails = createAction(
   (listingId) => ({ listingId })
 );
 
+export const getListingBookingSettings = createAction(
+  "LISTING_GET_BOOKING_SETTINGS",
+  async (listingId) => await api.get(`${listingId}/booking`),
+  (listingId) => ({ listingId })
+);
+
 export const activateListing = createAction(
   "LISTING_TOGGLE_ACTIVATE",
   async (listingId) => await api.post(`${listingId}/activate`),
