@@ -5,7 +5,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', "#69D2E7", "#A7DBD8"
 
 const PieChartView = ({ data, conf }) => (
   <Fragment>
-    <ResponsiveContainer height="100%" width="100%" aspect={1}>
+    <ResponsiveContainer height="80%" width="100%" aspect={1}>
       <PieChart data={data}>
         <Pie data={data} {...conf}>
           {
