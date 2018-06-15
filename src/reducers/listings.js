@@ -5,7 +5,8 @@ import {
   getListingDetails,
   activateListing,
   deActivateListing,
-  getListingBookingSettings
+  getListingBookingSettings,
+  getListingPricingSettings
 } from "./listings.actions";
 
 const listingReducer = handleActions(
@@ -22,6 +23,9 @@ const listingReducer = handleActions(
     [getListingBookingSettings]: produce((draft, { payload: bookingSettings }) => {
       draft.bookingSettings = bookingSettings;
     }),
+    [getListingPricingSettings]: produce((draft, { payload: pricing }) => {
+      draft.pricing = pricing;
+    })
   },
   {}
 );
@@ -34,7 +38,7 @@ const listingsReducer = handleActions(
         draft[listingId] = Object.assign(draft[listingId] ||{}, listing);
       })
     }),
-    [combineActions(getListingDetails, activateListing, deActivateListing, getListingBookingSettings)]: produce((draft, action) => {
+    [combineActions(getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings)]: produce((draft, action) => {
       const { meta: { listingId }} = action;
       draft[listingId] = listingReducer(draft[listingId], action);
     }),

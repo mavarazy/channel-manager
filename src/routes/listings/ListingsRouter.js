@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import ListingAvailability from "./ListingAvailability";
 import ListingBooking from "./booking";
 import ListingDetails from "./details";
-import ListingPricing from "./ListingPricing";
+import ListingPricing from "./pricing";
 import Listings from "./Listings";
 import ListingViewNav from "./ListingViewNav";
 

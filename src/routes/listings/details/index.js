@@ -29,6 +29,7 @@ const ListingDetails = ({ photos, description, overview, amenities, address, gue
     <hr/>
     <h3 className="subtitle has-text-weight-bold">Guest Resource</h3>
     <ListingGuestResource guestResources={guestResources}/>
+    <hr/>
   </Fragment>
 );
 

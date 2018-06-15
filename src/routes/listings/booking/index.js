@@ -21,6 +21,7 @@ const ListingBooking = ({ policy, houseRules, guestRequirements, bookingProcess 
     <hr/>
     <h3 className="subtitle has-text-weight-bold">Policies</h3>
     <Policies policy={policy}/>
+    <hr/>
   </Fragment>
 );
 
