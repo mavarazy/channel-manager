@@ -12,7 +12,7 @@ const amenityToPresentation = {
 }
 
 
-const ListingAmenities = ({ amenities }) => (
+const Amenities = ({ amenities }) => (
   <div className="columns">
     <div className="column">
       {Object.entries(amenities).map(([amenity, present], i) => present && i % 2 === 0 ? <Fragment key={i}>{amenityToPresentation[amenity]}</Fragment> : null)}
@@ -25,5 +25,5 @@ const ListingAmenities = ({ amenities }) => (
   </div>
 );
 
-export default ListingAmenities;
+export default Amenities;
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ListingLocation = ({ location: { country, city, zip, address } }) => (
+const Location = ({ location: { country, city, zip, address } }) => (
   <div>
     <h2 className="subtitle is-marginless">Country: {country}</h2>
     <h2 className="subtitle is-marginless">City: {city}</h2>
@@ -9,4 +9,4 @@ const ListingLocation = ({ location: { country, city, zip, address } }) => (
   </div>
 );
 
-export default ListingLocation;
+export default Location;

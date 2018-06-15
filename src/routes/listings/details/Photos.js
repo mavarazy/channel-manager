@@ -21,7 +21,7 @@ const ListingPhotoPagination = ({ position, total, onSelect }) => (
   </div>
 );
 
-class ListingPhotos extends Component {
+class Photos extends Component {
   state = { position: 0 };
 
   handlePositionChange = (position) => {
@@ -42,4 +42,4 @@ class ListingPhotos extends Component {
   }
 }
 
-export default ListingPhotos;
+export default Photos;

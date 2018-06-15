@@ -1,6 +1,6 @@
 import React from "react";
 
-const ListingOverview = ({ overview: { accommodates, bathrooms, bedrooms, beds, propertyType, roomType } }) => (
+const Overview = ({ overview: { accommodates, bathrooms, bedrooms, beds, propertyType, roomType } }) => (
   <div className="columns">
     <div className="column">
       <h5 className="subtitle is-marginless">Accommodates: {accommodates}</h5>
@@ -17,5 +17,5 @@ const ListingOverview = ({ overview: { accommodates, bathrooms, bedrooms, beds, 
   </div>
 );
 
-export default ListingOverview;
+export default Overview;
 

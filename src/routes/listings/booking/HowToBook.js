@@ -11,7 +11,7 @@ const RequestBooking = () => (
   <Fragment>
     <h5 className="title">All guests must send a reservation request</h5>
   </Fragment>
-)
+);
 
 const HowToBook = ({ process: { instant }}) => instant ? <InstantBooking/> : <RequestBooking/>;
 

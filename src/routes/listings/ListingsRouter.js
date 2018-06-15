@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import ListingAvailability from "./ListingAvailability";
 import ListingBooking from "./booking";
-import ListingDetails from "./details/ListingDetails";
+import ListingDetails from "./details";
 import ListingPricing from "./ListingPricing";
 import Listings from "./Listings";
 import ListingViewNav from "./ListingViewNav";
