@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
-import ListingAvailability from "./ListingAvailability";
+import ListingAvailability from "./availability";
 import ListingBooking from "./booking";
 import ListingDetails from "./details";
 import ListingPricing from "./pricing";
