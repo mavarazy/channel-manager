@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { BookingsIcon, CalendarIcon, ListingsIcon, LogoutIcon, ProfileIcon, ReportsIcon, UserIcon } from "./icon";
+import { BookingsIcon, CalendarIcon, ListingsIcon, LogoutIcon, ProfileIcon, ReportsIcon, UserIcon, SystemStatusIcon } from "./icon";
 import cx from "classnames";
 
 export class Navigation extends Component {
@@ -24,8 +24,8 @@ export class Navigation extends Component {
             <NavLink className="navbar-item" activeClassName="is-active has-text-link" to="/bookings">
               <BookingsIcon/>
               <span>
-            Bookings
-          </span>
+                Bookings
+              </span>
             </NavLink>
             <NavLink className="navbar-item" activeClassName="is-active has-text-link" to="/calendar">
               <CalendarIcon/>
@@ -50,6 +50,9 @@ export class Navigation extends Component {
           </div>
 
           <div className="navbar-end is-hidden-mobile">
+            <NavLink className="navbar-item" activeClassName="is-active has-text-link" to="/status">
+              <SystemStatusIcon/>
+            </NavLink>
             <div className="navbar-item has-dropdown is-hoverable">
               <div className="navbar-link">
                 <UserIcon size="2x"/>

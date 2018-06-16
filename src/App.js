@@ -9,6 +9,7 @@ import ListingsRouter from "./routes/listings/ListingsRouter";
 import ProfileRouter from "./routes/profile/ProfileRouter";
 import ReportsRouter from "./routes/reports/ReportsRouter";
 import NotFound from "./routes/NotFound";
+import StatusRouter from "./routes/status/StatusRouter";
 
 const App = () => (
   <BrowserRouter>
@@ -27,6 +28,7 @@ const App = () => (
         <PrivateRoute path="/calendar" component={CalendarRouter}/>
         <PrivateRoute path="/reports" component={ReportsRouter}/>
         <PrivateRoute path="/profile" component={ProfileRouter}/>
+        <PrivateRoute path="/status" component={StatusRouter}/>
         <Route component={NotFound}/>
       </Switch>
     </Fragment>

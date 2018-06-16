@@ -7,6 +7,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.0.20",
     "bulma": "^0.7.1",
+    "bulma-badge": "^2.0.0",
     "bulma-pageloader": "^2.1.0",
     "bulma-switch": "^2.0.0",
     "classnames": "^2.2.6",
@@ -62,6 +63,10 @@
     },
     "/api/bookings": {
       "target": "https://410a9e02-c7c7-4655-ba5f-3c2c82f0b91f.mock.pstmn.io",
+      "changeOrigin": true
+    },
+    "/api/status": {
+      "target": "https://67191703-e8af-4e1b-907d-e746ead34419.mock.pstmn.io",
       "changeOrigin": true
     }
   }
