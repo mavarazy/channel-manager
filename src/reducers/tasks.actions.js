@@ -1,9 +1,9 @@
 import { createAction } from "redux-actions";
 import apiFactory from "./apiFactory";
 
-const api = apiFactory("/api/status");
+const api = apiFactory("/api/tasks");
 
-export const getStatus = createAction(
-  "STATUS_GET",
+export const getTasks = createAction(
+  "TASKS_GET",
   async () => await api.get()
 );

@@ -8,8 +8,8 @@ import CalendarRouter from "./routes/calendar/CalendarRouter";
 import ListingsRouter from "./routes/listings/ListingsRouter";
 import ProfileRouter from "./routes/profile/ProfileRouter";
 import ReportsRouter from "./routes/reports/ReportsRouter";
+import TasksRouter from "./routes/tasks/TaskRouter";
 import NotFound from "./routes/NotFound";
-import StatusRouter from "./routes/status/StatusRouter";
 
 const App = () => (
   <BrowserRouter>
@@ -28,7 +28,7 @@ const App = () => (
         <PrivateRoute path="/calendar" component={CalendarRouter}/>
         <PrivateRoute path="/reports" component={ReportsRouter}/>
         <PrivateRoute path="/profile" component={ProfileRouter}/>
-        <PrivateRoute path="/status" component={StatusRouter}/>
+        <PrivateRoute path="/tasks" component={TasksRouter}/>
         <Route component={NotFound}/>
       </Switch>
     </Fragment>

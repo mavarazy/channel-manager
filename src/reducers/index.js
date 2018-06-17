@@ -5,11 +5,11 @@ import availabilityReducer from "./availability";
 import bookingsReducer from "./bookings";
 import listingsReducer from "./listings";
 import reportsReducer from "./reports";
-import statusReducer from "./status";
+import tasksReducer from "./tasks";
 
 const reducers = combineReducers({
   auth: authReducer,
-  status: statusReducer,
+  tasks: tasksReducer,
   bookings: bookingsReducer,
   listings: listingsReducer,
   availability: availabilityReducer,

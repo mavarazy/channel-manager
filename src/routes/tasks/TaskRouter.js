@@ -1,22 +1,22 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
-import Status from "./Status";
+import Tasks from "./Tasks";
 
-const StatusRouter = () => (
+const TaskRouter = () => (
   <Fragment>
     <div className="hero is-dark">
       <div className="hero-body">
         <div className="container">
-          <h1 className="title">Status</h1>
+          <h1 className="title">Tasks</h1>
         </div>
       </div>
     </div>
     <section className="section">
       <div className="container">
-          <Route path="/status" component={Status}/>
+          <Route path="/tasks" component={Tasks}/>
       </div>
     </section>
   </Fragment>
 );
 
-export default StatusRouter;
+export default TaskRouter;

@@ -65,7 +65,7 @@
       "target": "https://410a9e02-c7c7-4655-ba5f-3c2c82f0b91f.mock.pstmn.io",
       "changeOrigin": true
     },
-    "/api/status": {
+    "/api/tasks": {
       "target": "https://67191703-e8af-4e1b-907d-e746ead34419.mock.pstmn.io",
       "changeOrigin": true
     }

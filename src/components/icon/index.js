@@ -6,4 +6,4 @@ export * from "./ListingsIcon";
 export * from "./ProfileIcon";
 export * from "./LogoutIcon";
 export * from "./UserIcon";
-export * from "./SystemStatusIcon";
+export * from "./TasksIcon";

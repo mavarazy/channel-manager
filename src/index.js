@@ -17,7 +17,7 @@ import './index.css';
 import appReducer from "./reducers";
 import { login, logout, register } from "./reducers/auth.actions";
 import { getListings } from "./reducers/listings.actions";
-import { getStatus } from "./reducers/status.actions";
+import { getTasks } from "./reducers/tasks.actions";
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -25,7 +25,7 @@ const loader = handleActions(
   {
     [combineActions(login, register)]: (state) => {
       store.dispatch(getListings());
-      store.dispatch(getStatus());
+      store.dispatch(getTasks());
       return state;
     },
     [logout]: () => undefined,
@@ -38,7 +38,7 @@ const rootReducer = (state, action) => appReducer(loader(state, action), action)
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(promiseMiddleware, thunk)));
 
 const loadingTask = store.getState().auth.isAuthenticated
-  ? Promise.all([store.dispatch(getListings()), store.dispatch(getStatus())])
+  ? Promise.all([store.dispatch(getListings()), store.dispatch(getTasks())])
   : Promise.resolve(true);
 
 loadingTask.then(() => {
