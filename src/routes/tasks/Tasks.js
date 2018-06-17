@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import cx from "classnames";
-import { TaskStatusIcon } from "../../components/icon";
+import { BookingsIcon, CalendarIcon, ListingsIcon, TaskStatusIcon } from "../../components/icon";
 import { UP_TO_DATE_STATUS, UPDATING_STATUS, updateTask, updateTaskChannel } from "../../reducers/tasks.actions";
 
 class TaskStatus extends Component {
@@ -33,12 +33,21 @@ class TaskStatus extends Component {
   }
 }
 
+const TaskCategory = ({ category }) => (
+  <Fragment>
+    {category === "bookings" ? <BookingsIcon/> : (category === "calendar" ? <CalendarIcon/> : <ListingsIcon/>)}
+    <span>{category}</span>
+  </Fragment>
+);
+
 const TaskRow = ({ taskId, status, category, type, channel: { airBnB, booking }, updateTask, updateTaskChannel }) => (
   <tr>
     <td>
       <TaskStatus status={status} onClick={() => updateTask(taskId)}/>
     </td>
-    <td>{category}</td>
+    <td>
+      <TaskCategory category={category}/>
+    </td>
     <td>{type}</td>
     <td><TaskStatus status={airBnB} onClick={() => updateTaskChannel(taskId, "airBnB")}/></td>
     <td><TaskStatus status={booking} onClick={() => updateTaskChannel(taskId, "booking")}/></td>
