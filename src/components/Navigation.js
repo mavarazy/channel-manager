@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { UP_TO_DATE_STATUS } from "../reducers/tasks.actions";
 import { BookingsIcon, CalendarIcon, ListingsIcon, LogoutIcon, ProfileIcon, ReportsIcon, UserIcon, TasksIcon } from "./icon";
 import cx from "classnames";
+
+const TaskNavView = ({ pending }) => (
+  <NavLink className="navbar-item badge is-badge-outlined" activeClassName="is-active" to="/tasks" data-badge={pending.length}>
+    <TasksIcon/>
+  </NavLink>
+);
+
+const mapStateToProps = ({ tasks }) => ({ pending: Object.values(tasks).filter(({ status }) => status !== UP_TO_DATE_STATUS ) });
+
+const TaskNav = connect(mapStateToProps)(TaskNavView);
+
 
 export class Navigation extends Component {
   state = { isActive: false };
@@ -50,6 +63,8 @@ export class Navigation extends Component {
           </div>
 
           <div className="navbar-end is-hidden-mobile">
+            <TaskNav/>
+            <div className="navbar-item"/>
             <div className="navbar-item has-dropdown is-hoverable">
               <div className="navbar-link">
                 <UserIcon size="2x"/>
@@ -58,10 +73,6 @@ export class Navigation extends Component {
                 <NavLink className="navbar-item" activeClassName="is-active" to="/profile">
                   <ProfileIcon/>
                   <span>Profile</span>
-                </NavLink>
-                <NavLink className="navbar-item" activeClassName="is-active" to="/tasks">
-                  <TasksIcon/>
-                  <span>Tasks</span>
                 </NavLink>
                 <hr className="navbar-divider"/>
                 <Link className="navbar-item" to="/auth/logout">

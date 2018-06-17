@@ -18,7 +18,7 @@ const bookingsReducer = handleActions(
       draft[bookingId].messages.push(message);
     }),
     [cancelBooking]: produce((draft, { payload, meta: { bookingId }}) => {
-      Object.assign(draft[bookingId], payload);
+      draft[bookingId].status = "canceled";
     })
   },
   {}
