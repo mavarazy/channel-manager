@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { UP_TO_DATE_STATUS } from "../reducers/tasks.actions";
@@ -51,6 +51,10 @@ export class Navigation extends Component {
             <NavLink className="navbar-item" activeClassName="is-active has-text-link" to="/listings">
               <ListingsIcon/>
               <span>Listings</span>
+            </NavLink>
+            <NavLink className="navbar-item is-hidden-tablet is-hidden-desktop" activeClassName="is-active" to="/tasks">
+              <TasksIcon/>
+              <span>Tasks</span>
             </NavLink>
             <NavLink className="navbar-item is-hidden-desktop is-hidden-tablet" activeClassName="is-active" to="/profile">
               <ProfileIcon/>
