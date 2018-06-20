@@ -167,4 +167,4 @@ const mapDispatchToProps = (dispatch, { match: { params: { listingId } } }) => b
   dispatch
 );
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getAvailability }, Calendar);
+export default connectAndLoad(mapStateToProps, mapDispatchToProps)({ getAvailability }, Calendar);

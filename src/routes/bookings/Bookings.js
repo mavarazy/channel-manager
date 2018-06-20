@@ -66,4 +66,4 @@ const Bookings = ({ bookings }) => (
 const mapStateToProps = ({ bookings }) => ({ bookings: Object.values(bookings) });
 const mapDispatchToProps = (dispatch) => bindActionCreators({ getBookings }, dispatch);
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getBookings }, Bookings);
+export default connectAndLoad(mapStateToProps, mapDispatchToProps)({ getBookings }, Bookings);

@@ -41,4 +41,4 @@ const mapDispatchToProps = (dispatch, { match: { params: { listingId }}}) => bin
   dispatch
 );
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getListingDetails }, ListingDetails);
+export default connectAndLoad(mapStateToProps, mapDispatchToProps)({ getListingDetails }, ListingDetails);

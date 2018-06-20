@@ -1,7 +1,7 @@
 import React from "react";
 import { bindActionCreators } from "redux";
-import { Checkbox } from "../../components";
-import { connectAndLoad } from "../../components/connectAndLoad";
+import { Checkbox, Switch } from "../../components";
+import { connect } from "react-redux";
 import { getListing, NOT_CONNECTED, toggleChannel, toggleActive } from "../../reducers/listings.actions";
 
 const ListingChannels = ({ channels: { airBnB, avito, booking }, isActive, toggleChannel, toggleActive }) => (
@@ -9,7 +9,7 @@ const ListingChannels = ({ channels: { airBnB, avito, booking }, isActive, toggl
     <div className="column">
     </div>
     <div className="column">
-      <Checkbox
+      <Switch
         checked={isActive}
         onClick={() => toggleActive(!isActive)}
         text="Active"
@@ -52,4 +52,4 @@ const mapDispatchToProps = (dispatch, { match: { params: { listingId } } }) => b
   dispatch
 );
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getListing }, ListingChannels);
+export default connect(mapStateToProps, mapDispatchToProps)(ListingChannels);

@@ -143,4 +143,4 @@ const mapDispatchToProps = (dispatch, { match: { params: { bookingId } } }) => b
   dispatch
 );
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getBookingDetails }, Booking);
+export default connectAndLoad(mapStateToProps, mapDispatchToProps)({ getBookingDetails }, Booking);

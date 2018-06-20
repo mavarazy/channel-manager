@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch, { match: { params: { listingId, year, mont
   dispatch
 );
 
-export default connectAndLoad(mapStateToProps, mapDispatchToProps, { getMonthReport }, YearMonthReport);
+export default connectAndLoad(mapStateToProps, mapDispatchToProps)({ getMonthReport }, YearMonthReport);

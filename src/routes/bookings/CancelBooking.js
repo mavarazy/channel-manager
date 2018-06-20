@@ -56,4 +56,4 @@ const mapDispatchToProps = (dispatch, { match: { params: { bookingId } } }) => b
   dispatch
 );
 
-export default withRouter(connectAndLoad(mapStateToProps, mapDispatchToProps, { getBookingDetails }, CancelBooking));
+export default withRouter(connectAndLoad(mapStateToProps, mapDispatchToProps)({ getBookingDetails }, CancelBooking));

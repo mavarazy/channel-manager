@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
+import { Switch } from "../../components";
 import { Checkbox } from "../../components/Checkbox";
 import { ViewIcon } from "../../components/icon";
 import {
@@ -20,6 +21,9 @@ const ListingRow = ({ listingId, address, channels: { airBnB, booking, avito }, 
     </td>
     <td>{address.address}</td>
     <td>
+      <Switch checked={isActive} onClick={() => toggleActive(listingId, !isActive)}/>
+    </td>
+    <td>
       <Checkbox checked={airBnB.status !== NOT_CONNECTED} onClick={() => toggleChannel(listingId, "airBnB", airBnB.status)} disabled={!isActive}/>
     </td>
     <td>
@@ -27,9 +31,6 @@ const ListingRow = ({ listingId, address, channels: { airBnB, booking, avito }, 
     </td>
     <td>
       <Checkbox checked={avito.status !== NOT_CONNECTED} onClick={() => toggleChannel(listingId, "avito", avito.status)} disabled={!isActive}/>
-    </td>
-    <td>
-      <Checkbox checked={isActive} onClick={() => toggleActive(listingId, !isActive)}/>
     </td>
   </tr>
 );
@@ -40,10 +41,10 @@ const ListingTable = ({ listings, ...actions }) => (
     <tr>
       <th/>
       <th>Address</th>
+      <th>Active</th>
       <th>AirBnB</th>
       <th>Booking</th>
       <th>Avito</th>
-      <th>Active</th>
     </tr>
     </thead>
     <tbody>

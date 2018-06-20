@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class Checkbox extends Component {
+export class Switch extends Component {
   state = { isLoading: false };
 
   handleToggle = () => {
@@ -19,7 +19,7 @@ export class Checkbox extends Component {
         <div className={"control"}>
           <input
             type="checkbox"
-            className={"is-checkradio is-circle"}
+            className={"switch is-rounded"}
             onChange={this.handleToggle}
             checked={checked}
             disabled={this.state.isLoading || disabled}
