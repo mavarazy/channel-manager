@@ -5,7 +5,7 @@ import {
   deActivateListing,
   disableListingChannel,
   enableListingChannel,
-  updateBookingProcess
+  updateBookingProcess, updateGuestRequirements
 } from "./listings.actions";
 import { lockDates, releaseDates } from "./availability.actions";
 import { cancelBooking } from "./bookings.actions";
@@ -26,7 +26,7 @@ export const tasksReducer = handleActions(
     [updateTaskChannel]: produce((draft, { payload: task, meta: { taskId }}) => {
       draft[taskId] = task;
     }),
-    [combineActions(activateListing, deActivateListing, lockDates, releaseDates, cancelBooking, enableListingChannel, disableListingChannel, connectChannel, disConnectChannel, updateBookingProcess)]: produce((draft, { payload }) => {
+    [combineActions(activateListing, deActivateListing, lockDates, releaseDates, cancelBooking, enableListingChannel, disableListingChannel, connectChannel, disConnectChannel, updateBookingProcess, updateGuestRequirements)]: produce((draft, { payload }) => {
       draft[payload.taskId] = payload;
     })
   },

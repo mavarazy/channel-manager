@@ -11,13 +11,16 @@ import {
   getListingAvailabilitySettings,
   getListing,
   enableListingChannel,
-  disableListingChannel, CONNECTED, NOT_CONNECTED, DISABLED, updateBookingProcess
+  disableListingChannel, CONNECTED, NOT_CONNECTED, DISABLED, updateBookingProcess, updateGuestRequirements
 } from "./listings.actions";
 
 const bookingReducer = handleActions(
   {
     [updateBookingProcess]: produce((draft, { meta: { process }}) => {
       draft.process = process;
+    }),
+    [updateGuestRequirements]: produce((draft, { meta: { guestRequirements }}) => {
+      draft.guestRequirements = guestRequirements;
     }),
     [getListingBookingSettings]: produce((draft, { payload }) => {
       Object.assign(draft, payload);
@@ -40,7 +43,7 @@ const listingReducer = handleActions(
     [deActivateListing]: produce((draft) => {
       draft.isActive = false;
     }),
-    [combineActions(getListingBookingSettings, updateBookingProcess)]: produce((draft, action) => {
+    [combineActions(getListingBookingSettings, updateBookingProcess, updateGuestRequirements)]: produce((draft, action) => {
       draft.bookingSettings = bookingReducer(draft.bookingSettings, action);
     }),
     [getListingPricingSettings]: produce((draft, { payload: pricing }) => {
@@ -75,7 +78,7 @@ export const listingsReducer = handleActions(
     [connectChannel]: produce((draft, { meta: { channel }}) => {
       Object.values(draft).forEach(val => val.channels[channel].status = DISABLED)
     }),
-    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings, updateBookingProcess)]: produce((draft, action) => {
+    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings, updateBookingProcess, updateGuestRequirements)]: produce((draft, action) => {
       const { meta: { listingId }} = action;
       draft[listingId] = listingReducer(draft[listingId], action);
     }),

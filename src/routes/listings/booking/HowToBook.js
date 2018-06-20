@@ -18,7 +18,7 @@ const RequestBooking = () => (
   </Fragment>
 );
 
-const HowToBookViewMode = ({ process: { instant } }) => (
+const HowToBookView = ({ process: { instant } }) => (
   <div className="columns">
     <div className="column">
       {instant ? <InstantBooking/> : <RequestBooking/>}
@@ -87,10 +87,6 @@ const HowToBookEdit = (props) => (
   />
 );
 
-const HowToBook = settingsBlock(
-  "How guests can book",
-  HowToBookViewMode,
-  HowToBookEdit,
-);
+const HowToBook = settingsBlock("How guests can book", HowToBookView, HowToBookEdit,);
 
 export default HowToBook;
