@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import ListingAvailability from "./availability";
 import ListingBooking from "./booking";
 import ListingDetails from "./details";
+import ListingChannels from "./ListingChannels";
 import ListingPricing from "./pricing";
 import Listings from "./Listings";
 import ListingViewNav from "./ListingViewNav";
@@ -24,6 +25,7 @@ const ListingsRouter = () => (
           <Route exact path="/listings" component={Listings}/>
           <Route path="/listings/:listingId">
             <Fragment>
+              <Route path="/listings/:listingId" component={ListingChannels}/>
               <Route path="/listings/:listingId" component={ListingViewNav}/>
               <Switch>
                 <Route path="/listings/:listingId/availability" component={ListingAvailability}/>

@@ -1304,6 +1304,10 @@ bulma-badge@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/bulma-badge/-/bulma-badge-2.0.0.tgz#7c7f8fee805400fa35117a43c80f5f9784f3d513"
 
+bulma-checkradio@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/bulma-checkradio/-/bulma-checkradio-2.1.0.tgz#494ab05b0245a41a0083bbd08436fafbde4b3814"
+
 bulma-pageloader@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/bulma-pageloader/-/bulma-pageloader-2.1.0.tgz#2c48c32bac98109bb59e46489b4e90292ec25e31"

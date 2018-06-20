@@ -1,11 +1,20 @@
 import { createAction } from "redux-actions";
 import apiFactory from "./apiFactory";
 
+export const CONNECTED = "connected";
+export const NOT_CONNECTED = "notConnected";
+
 const api = apiFactory("/api/listings");
 
 export const getListings = createAction(
-  "LISTING_GET",
+  "LISTING_GET_ALL",
   async () => await api.get()
+);
+
+export const getListing = createAction(
+  "LISTING_GET",
+  async (listingId) => await api.get(listingId),
+  listingId => ({ listingId })
 );
 
 export const getListingDetails = createAction(
@@ -13,6 +22,22 @@ export const getListingDetails = createAction(
   async (listingId) => await api.get(`${listingId}/details`),
   (listingId) => ({ listingId })
 );
+
+export const enableListingChannel = createAction(
+  "LISTING_ENABLE_CHANNEL",
+  async (listingId, channel) => await api.post(`${listingId}/channel/enable`, { channel }),
+  (listingId, channel) => ({ listingId, channel })
+);
+
+export const disableListingChannel = createAction(
+  "LISTING_DISABLE_CHANNEL",
+  async (listingId, channel) => await api.post(`${listingId}/channel/disable`, { channel }),
+  (listingId, channel) => ({ listingId, channel })
+);
+
+export const toggleChannel = (listingId, channel, status) => status === NOT_CONNECTED ? enableListingChannel(listingId, channel) : disableListingChannel(listingId, channel)
+
+export const toggleActive = (listingId, isActive) => isActive ? activateListing(listingId) : deActivateListing(listingId);
 
 export const getListingBookingSettings = createAction(
   "LISTING_GET_BOOKING_SETTINGS",

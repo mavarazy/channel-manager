@@ -6,13 +6,20 @@ import {
   activateListing,
   deActivateListing,
   getListingBookingSettings,
-  getListingPricingSettings, getListingAvailabilitySettings
+  getListingPricingSettings,
+  getListingAvailabilitySettings,
+  getListing,
+  enableListingChannel,
+  disableListingChannel, CONNECTED, NOT_CONNECTED
 } from "./listings.actions";
 
 const listingReducer = handleActions(
   {
     [getListingDetails]: produce((draft, { payload: details }) => {
       draft.details = details;
+    }),
+    [getListing]: produce((draft, { payload: listing }) => {
+      Object.assign(draft, listing);
     }),
     [activateListing]: produce((draft) => {
       draft.isActive = true;
@@ -29,6 +36,12 @@ const listingReducer = handleActions(
     [getListingAvailabilitySettings]: produce((draft, { payload: availability }) => {
       draft.availability = availability;
     }),
+    [enableListingChannel]: produce((draft, { payload, meta: { listingId, channel }}) => {
+      draft.channels[channel].status = CONNECTED;
+    }),
+    [disableListingChannel]: produce((draft, { payload, meta: { listingId, channel }}) => {
+      draft.channels[channel].status = NOT_CONNECTED;
+    })
   },
   {}
 );
@@ -41,7 +54,7 @@ const listingsReducer = handleActions(
         draft[listingId] = Object.assign(draft[listingId] ||{}, listing);
       })
     }),
-    [combineActions(getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings)]: produce((draft, action) => {
+    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings)]: produce((draft, action) => {
       const { meta: { listingId }} = action;
       draft[listingId] = listingReducer(draft[listingId], action);
     }),
