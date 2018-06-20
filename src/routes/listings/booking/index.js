@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { bindActionCreators } from "redux";
 import selectn from "selectn";
 import { connectAndLoad } from "../../../components/connectAndLoad";
@@ -8,13 +8,11 @@ import HouseRules from "./HouseRules";
 import HowToBook from "./HowToBook";
 
 const ListingBooking = ({ houseRules, guestRequirements, process, updateBookingProcess, updateGuestRequirements, updateHouseRules }) => (
-  <div className="columns">
-    <div className="column is-8">
-      <HowToBook process={process} onChange={updateBookingProcess}/>
-      <GuestRequirement guestRequirements={guestRequirements} onChange={updateGuestRequirements}/>
-      <HouseRules houseRules={houseRules} onChange={updateHouseRules}/>
-    </div>
-  </div>
+  <Fragment>
+    <HowToBook process={process} onChange={updateBookingProcess}/>
+    <GuestRequirement guestRequirements={guestRequirements} onChange={updateGuestRequirements}/>
+    <HouseRules houseRules={houseRules} onChange={updateHouseRules}/>
+  </Fragment>
 );
 
 

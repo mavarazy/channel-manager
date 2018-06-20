@@ -24,14 +24,18 @@ const ListingsRouter = () => (
       <div className="container">
         <Route exact path="/listings" component={ChannelConnections}/>
         <Route exact path="/listings" component={Listings}/>
-        <Route path="/listings/:listingId" component={ListingChannels}/>
-        <Route path="/listings/:listingId" component={ListingViewNav}/>
-        <Switch>
-          <Route path="/listings/:listingId/availability" component={ListingAvailability}/>
-          <Route path="/listings/:listingId/details" component={ListingDetails}/>
-          <Route path="/listings/:listingId/booking" component={ListingBooking}/>
-          <Route path="/listings/:listingId/pricing" component={ListingPricing}/>
-        </Switch>
+        <div className="columns">
+          <div className="column is-8">
+            <Route path="/listings/:listingId" component={ListingChannels}/>
+            <Route path="/listings/:listingId" component={ListingViewNav}/>
+            <Switch>
+              <Route path="/listings/:listingId/availability" component={ListingAvailability}/>
+              <Route path="/listings/:listingId/details" component={ListingDetails}/>
+              <Route path="/listings/:listingId/booking" component={ListingBooking}/>
+              <Route path="/listings/:listingId/pricing" component={ListingPricing}/>
+            </Switch>
+          </div>
+        </div>
       </div>
     </section>
   </Fragment>
