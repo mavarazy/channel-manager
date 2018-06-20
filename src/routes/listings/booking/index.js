@@ -11,9 +11,7 @@ import Policies from "./Policies";
 const ListingBooking = ({ policy, houseRules, guestRequirements, process, updateBookingProcess }) => (
   <div className="columns">
     <div className="column is-8">
-      <h3 className="subtitle has-text-weight-bold">How guests can book</h3>
       <HowToBook process={process} onChange={updateBookingProcess}/>
-      <hr/>
       <h3 className="subtitle has-text-weight-bold">Guest Requirement</h3>
       <GuestRequirement guestRequirements={guestRequirements}/>
       <hr/>

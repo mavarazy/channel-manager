@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Field, Form, reduxForm } from "redux-form";
 import cx from "classnames";
+import { settingsBlock } from "../../../components";
 
 const InstantBooking = () => (
   <Fragment>
@@ -17,7 +18,13 @@ const RequestBooking = () => (
   </Fragment>
 );
 
-const HowToBookViewMode = ({ process: { instant } }) => instant ? <InstantBooking/> : <RequestBooking/>;
+const HowToBookViewMode = ({ process: { instant } }) => (
+  <div className="columns">
+    <div className="column">
+      {instant ? <InstantBooking/> : <RequestBooking/>}
+    </div>
+  </div>
+);
 
 const HowToBookForm = ({ handleSubmit, onCancel, change, pristine, submitting }) => (
   <Form onSubmit={handleSubmit}>
@@ -72,38 +79,18 @@ const HowToBookForm = ({ handleSubmit, onCancel, change, pristine, submitting })
 
 const HowToBookFormRedux = reduxForm({ form: "how-to-edit" })(HowToBookForm);
 
-class HowToBook extends Component {
-  state = { edit: false };
+const HowToBookEdit = (props) => (
+  <HowToBookFormRedux
+    initialValues={{ type: props.process.instant ? "instant" : "required" }}
+    onSubmit={({ type }) => props.onChange({ instant: type === "instant" }).then(() => props.switchMode())}
+    onCancel={props.switchMode}
+  />
+);
 
-  switchMode = () => this.setState(({ edit }) => ({ edit: !edit }));
-
-  render() {
-    if (this.state.edit) {
-      return (
-        <Fragment>
-          <HowToBookFormRedux
-            initialValues={{ type: this.props.process.instant ? "instant" : "required" }}
-            onSubmit={({ type }) => this.props.onChange({ instant: type === "instant" }).then(() => this.switchMode())}
-            onCancel={this.switchMode}
-            switchMode={this.switchMode}
-          />
-        </Fragment>
-      );
-    } else {
-      return (
-        <Fragment>
-          <div className="columns">
-            <div className="column">
-              <HowToBookViewMode {...this.props}/>
-            </div>
-            <div className="column is-1">
-              <a className="button is-primary is-outlined" onClick={this.switchMode}>Edit</a>
-            </div>
-          </div>
-        </Fragment>
-      );
-    }
-  }
-}
+const HowToBook = settingsBlock(
+  "How guests can book",
+  HowToBookViewMode,
+  HowToBookEdit,
+);
 
 export default HowToBook;
