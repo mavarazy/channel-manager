@@ -50,7 +50,9 @@ const GuestRequirementsForm = ({ handleSubmit, change, onCancel, pristine, submi
   </Form>
 );
 
-const GuestRequirementsFormRedux = reduxForm({ form: "guest-requirements-edit" })(GuestRequirementsForm);
+// TODO tripInfo
+
+const GuestRequirementsFormRedux = reduxForm({ form: "guest-requirements" })(GuestRequirementsForm);
 
 const GuestRequirementsEdit = ({ guestRequirements, onChange, switchMode }) => (
   <GuestRequirementsFormRedux

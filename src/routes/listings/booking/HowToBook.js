@@ -77,7 +77,7 @@ const HowToBookForm = ({ handleSubmit, onCancel, change, pristine, submitting })
   </Form>
 );
 
-const HowToBookFormRedux = reduxForm({ form: "how-to-edit" })(HowToBookForm);
+const HowToBookFormRedux = reduxForm({ form: "how-to-book" })(HowToBookForm);
 
 const HowToBookEdit = (props) => (
   <HowToBookFormRedux

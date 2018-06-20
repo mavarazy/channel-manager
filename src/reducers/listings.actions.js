@@ -58,6 +58,12 @@ export const updateGuestRequirements = createAction(
   (listingId, guestRequirements) => ({ listingId, guestRequirements })
 );
 
+export const updateHouseRules = createAction(
+  "LISTING_UPDATE_HOUSE_RULES",
+  async (listingId, houseRules) => await api.post(`${listingId}/booking/houseRules`, houseRules),
+  (listingId, houseRules) => ({ listingId, houseRules })
+);
+
 export const getListingPricingSettings = createAction(
   "LISTING_GET_PRICING_SETTINGS",
   async (listingId) => await api.get(`${listingId}/pricing`),
