@@ -11,8 +11,20 @@ import {
   getListingAvailabilitySettings,
   getListing,
   enableListingChannel,
-  disableListingChannel, CONNECTED, NOT_CONNECTED, DISABLED
+  disableListingChannel, CONNECTED, NOT_CONNECTED, DISABLED, updateBookingProcess
 } from "./listings.actions";
+
+const bookingReducer = handleActions(
+  {
+    [updateBookingProcess]: produce((draft, { meta: { process }}) => {
+      draft.process = process;
+    }),
+    [getListingBookingSettings]: produce((draft, { payload }) => {
+      Object.assign(draft, payload);
+    })
+  },
+  {}
+);
 
 const listingReducer = handleActions(
   {
@@ -28,8 +40,8 @@ const listingReducer = handleActions(
     [deActivateListing]: produce((draft) => {
       draft.isActive = false;
     }),
-    [getListingBookingSettings]: produce((draft, { payload: bookingSettings }) => {
-      draft.bookingSettings = bookingSettings;
+    [combineActions(getListingBookingSettings, updateBookingProcess)]: produce((draft, action) => {
+      draft.bookingSettings = bookingReducer(draft.bookingSettings, action);
     }),
     [getListingPricingSettings]: produce((draft, { payload: pricing }) => {
       draft.pricing = pricing;
@@ -44,7 +56,9 @@ const listingReducer = handleActions(
       draft.channels[channel].status = DISABLED;
     })
   },
-  {}
+  {
+    bookingSettings: {}
+  }
 );
 
 export const listingsReducer = handleActions(
@@ -61,7 +75,7 @@ export const listingsReducer = handleActions(
     [connectChannel]: produce((draft, { meta: { channel }}) => {
       Object.values(draft).forEach(val => val.channels[channel].status = DISABLED)
     }),
-    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings)]: produce((draft, action) => {
+    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings, updateBookingProcess)]: produce((draft, action) => {
       const { meta: { listingId }} = action;
       draft[listingId] = listingReducer(draft[listingId], action);
     }),

@@ -46,6 +46,12 @@ export const getListingBookingSettings = createAction(
   (listingId) => ({ listingId })
 );
 
+export const updateBookingProcess = createAction(
+  "LISTING_UPDATE_BOOKING_PROCESS",
+  async (listingId, process) => await api.post(`${listingId}/booking/process`, process),
+  (listingId, process) => ({ listingId, process })
+);
+
 export const getListingPricingSettings = createAction(
   "LISTING_GET_PRICING_SETTINGS",
   async (listingId) => await api.get(`${listingId}/pricing`),

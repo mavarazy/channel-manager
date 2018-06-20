@@ -1,6 +1,12 @@
 import { handleActions, combineActions } from "redux-actions";
 import { connectChannel, disConnectChannel } from "./channels.actions";
-import { activateListing, deActivateListing, disableListingChannel, enableListingChannel } from "./listings.actions";
+import {
+  activateListing,
+  deActivateListing,
+  disableListingChannel,
+  enableListingChannel,
+  updateBookingProcess
+} from "./listings.actions";
 import { lockDates, releaseDates } from "./availability.actions";
 import { cancelBooking } from "./bookings.actions";
 import { produce } from "./produce";
@@ -20,7 +26,7 @@ export const tasksReducer = handleActions(
     [updateTaskChannel]: produce((draft, { payload: task, meta: { taskId }}) => {
       draft[taskId] = task;
     }),
-    [combineActions(activateListing, deActivateListing, lockDates, releaseDates, cancelBooking, enableListingChannel, disableListingChannel, connectChannel, disConnectChannel)]: produce((draft, { payload }) => {
+    [combineActions(activateListing, deActivateListing, lockDates, releaseDates, cancelBooking, enableListingChannel, disableListingChannel, connectChannel, disConnectChannel, updateBookingProcess)]: produce((draft, { payload }) => {
       draft[payload.taskId] = payload;
     })
   },

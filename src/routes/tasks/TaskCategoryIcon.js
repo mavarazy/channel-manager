@@ -1,5 +1,5 @@
 import React from "react";
-import { BookingsIcon, CalendarIcon, ListingsIcon, TaskStatusIcon, ChannelIcon } from "../../components/icon";
+import { BookingsIcon, CalendarIcon, ListingsIcon, ChannelIcon } from "../../components/icon";
 
 export const TaskCategoryIcon = ({ category }) => {
   switch (category) {
