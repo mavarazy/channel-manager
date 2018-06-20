@@ -49,7 +49,7 @@ const mapStateToPropsWithData = (mapStateToProps) => (state, props) => {
   return { data }
 };
 
-export const connectAndLoad = (mapStateToProps, mapDispatchToProps, ... rest) => (loading, Component) => (
+export const connectAndLoad = (mapStateToProps, mapDispatchToProps, ...rest) => (loading, Component) => (
   connect(
     mapStateToPropsWithData(mapStateToProps),
     mapDispatchToProps,

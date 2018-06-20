@@ -2,7 +2,7 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { Checkbox, Switch } from "../../components";
 import { connect } from "react-redux";
-import { getListing, NOT_CONNECTED, toggleChannel, toggleActive } from "../../reducers/listings.actions";
+import { getListing, NOT_CONNECTED, toggleChannel, toggleActive, CONNECTED } from "../../reducers/listings.actions";
 
 const ListingChannels = ({ channels: { airBnB, avito, booking }, isActive, toggleChannel, toggleActive }) => (
   <div className="columns">
@@ -17,26 +17,26 @@ const ListingChannels = ({ channels: { airBnB, avito, booking }, isActive, toggl
     </div>
     <div className="column">
       <Checkbox
-        checked={airBnB.status !== NOT_CONNECTED}
+        checked={airBnB.status === CONNECTED}
         onClick={() => toggleChannel("airBnB", airBnB.status)}
         text="AirBnB"
-        disabled={!isActive}
+        disabled={!isActive || airBnB.status === NOT_CONNECTED}
       />
     </div>
     <div className="column">
       <Checkbox
-        checked={booking.status !== NOT_CONNECTED}
+        checked={booking.status === CONNECTED}
         onClick={() => toggleChannel("booking", booking.status)}
         text="Booking"
-        disabled={!isActive}
+        disabled={!isActive || booking.status === NOT_CONNECTED}
       />
     </div>
     <div className="column">
       <Checkbox
-        checked={avito.status !== NOT_CONNECTED}
+        checked={avito.status === CONNECTED}
         onClick={() => toggleChannel("avito", avito.status)}
         text="Avito"
-        disabled={!isActive}
+        disabled={!isActive || avito.status === NOT_CONNECTED}
       />
     </div>
   </div>

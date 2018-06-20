@@ -1,5 +1,4 @@
-import cx from "classnames";
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
@@ -9,7 +8,7 @@ import { ViewIcon } from "../../components/icon";
 import {
   toggleActive,
   toggleChannel,
-  NOT_CONNECTED
+  NOT_CONNECTED, CONNECTED
 } from "../../reducers/listings.actions";
 
 const ListingRow = ({ listingId, address, channels: { airBnB, booking, avito }, isActive, toggleChannel, toggleActive }) => (
@@ -24,13 +23,22 @@ const ListingRow = ({ listingId, address, channels: { airBnB, booking, avito }, 
       <Switch checked={isActive} onClick={() => toggleActive(listingId, !isActive)}/>
     </td>
     <td>
-      <Checkbox checked={airBnB.status !== NOT_CONNECTED} onClick={() => toggleChannel(listingId, "airBnB", airBnB.status)} disabled={!isActive}/>
+      <Checkbox
+        checked={airBnB.status === CONNECTED}
+        onClick={() => toggleChannel(listingId, "airBnB", airBnB.status)}
+        disabled={!isActive || airBnB.status === NOT_CONNECTED}/>
     </td>
     <td>
-      <Checkbox checked={booking.status !== NOT_CONNECTED} onClick={() => toggleChannel(listingId, "booking", booking.status)} disabled={!isActive}/>
+      <Checkbox
+        checked={booking.status === CONNECTED}
+        onClick={() => toggleChannel(listingId, "booking", booking.status)}
+        disabled={!isActive || booking.status === NOT_CONNECTED}/>
     </td>
     <td>
-      <Checkbox checked={avito.status !== NOT_CONNECTED} onClick={() => toggleChannel(listingId, "avito", avito.status)} disabled={!isActive}/>
+      <Checkbox
+        checked={avito.status === CONNECTED}
+        onClick={() => toggleChannel(listingId, "avito", avito.status)}
+        disabled={!isActive || avito.status === NOT_CONNECTED}/>
     </td>
   </tr>
 );

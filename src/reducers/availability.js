@@ -21,7 +21,7 @@ const listingAvailabilityReducer = handleActions(
   {}
 );
 
-const availabilityReducer = handleActions(
+export const availabilityReducer = handleActions(
   {
     [combineActions(getAvailability, releaseDates, lockDates)]: produce((draft, action) => {
       const { meta: { listingId }} = action;

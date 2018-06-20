@@ -17,7 +17,7 @@ const listingReportsReducers = handleActions(
   }
 );
 
-const reportsReducer = handleActions(
+export const reportsReducer = handleActions(
   {
     [combineActions(getYearReport, getMonthReport)]: produce((draft, action) => {
       const { meta: { listingId } } = action;
@@ -26,5 +26,3 @@ const reportsReducer = handleActions(
   },
   {}
 );
-
-export default reportsReducer;

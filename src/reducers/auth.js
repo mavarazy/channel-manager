@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   isAuthenticated: false
 };
 
-const authReducer = handleActions(
+export const authReducer = handleActions(
   {
     [combineActions(login, register)]: produce((authDraft, { payload }) => {
       Object.assign(authDraft, payload);
@@ -21,5 +21,3 @@ const authReducer = handleActions(
   },
   restoreState()
 );
-
-export default authReducer;

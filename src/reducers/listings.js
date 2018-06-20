@@ -1,4 +1,5 @@
 import { handleActions, combineActions } from "redux-actions";
+import { connectChannel, disConnectChannel } from "./channels.actions";
 import { produce } from "./produce";
 import {
   getListings,
@@ -10,7 +11,7 @@ import {
   getListingAvailabilitySettings,
   getListing,
   enableListingChannel,
-  disableListingChannel, CONNECTED, NOT_CONNECTED
+  disableListingChannel, CONNECTED, NOT_CONNECTED, DISABLED
 } from "./listings.actions";
 
 const listingReducer = handleActions(
@@ -40,19 +41,25 @@ const listingReducer = handleActions(
       draft.channels[channel].status = CONNECTED;
     }),
     [disableListingChannel]: produce((draft, { payload, meta: { listingId, channel }}) => {
-      draft.channels[channel].status = NOT_CONNECTED;
+      draft.channels[channel].status = DISABLED;
     })
   },
   {}
 );
 
-const listingsReducer = handleActions(
+export const listingsReducer = handleActions(
   {
     [getListings]: produce((draft, { payload: listings }) => {
       listings.forEach((listing) => {
         const { listingId } = listing;
         draft[listingId] = Object.assign(draft[listingId] ||{}, listing);
       })
+    }),
+    [disConnectChannel]: produce((draft, { meta: { channel }}) => {
+      Object.values(draft).forEach(val => val.channels[channel].status = NOT_CONNECTED)
+    }),
+    [connectChannel]: produce((draft, { meta: { channel }}) => {
+      Object.values(draft).forEach(val => val.channels[channel].status = DISABLED)
     }),
     [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings)]: produce((draft, action) => {
       const { meta: { listingId }} = action;
@@ -61,5 +68,3 @@ const listingsReducer = handleActions(
   },
   {}
 );
-
-export default listingsReducer;

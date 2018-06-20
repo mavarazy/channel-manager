@@ -2,8 +2,10 @@ import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import cx from "classnames";
-import { BookingsIcon, CalendarIcon, ListingsIcon, TaskStatusIcon } from "../../components/icon";
 import { UP_TO_DATE_STATUS, UPDATING_STATUS, updateTask, updateTaskChannel } from "../../reducers/tasks.actions";
+
+import { TaskStatusIcon } from "./TaskStatusIcon";
+import { TaskCategoryIcon } from "./TaskCategoryIcon";
 
 class TaskStatus extends Component {
   state = { isLoading: false };
@@ -35,12 +37,12 @@ class TaskStatus extends Component {
 
 const TaskCategory = ({ category }) => (
   <Fragment>
-    {category === "bookings" ? <BookingsIcon/> : (category === "calendar" ? <CalendarIcon/> : <ListingsIcon/>)}
+    <TaskCategoryIcon category={category}/>
     <span>{category}</span>
   </Fragment>
 );
 
-const TaskRow = ({ taskId, status, category, type, channel: { airBnB, booking }, updateTask, updateTaskChannel }) => (
+const TaskRow = ({ taskId, status, category, type, channel: { airBnB = UPDATING_STATUS, booking = UPDATING_STATUS } = {}, updateTask, updateTaskChannel }) => (
   <tr>
     <td>
       <TaskStatus status={status} onClick={() => updateTask(taskId)}/>

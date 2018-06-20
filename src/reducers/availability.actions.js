@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-import apiFactory from "./apiFactory";
+import { apiFactory } from "./apiFactory";
 
 const api = apiFactory("/api/availability");
 

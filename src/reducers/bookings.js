@@ -2,7 +2,7 @@ import { handleActions } from "redux-actions";
 import { getBookingDetails, getBookings, sendMessage, cancelBooking } from "./bookings.actions";
 import { produce } from "./produce";
 
-const bookingsReducer = handleActions(
+export const bookingsReducer = handleActions(
   {
     [getBookings]: produce((draft, { payload: bookings }) => {
       bookings.forEach((booking) => {
@@ -23,5 +23,3 @@ const bookingsReducer = handleActions(
   },
   {}
 );
-
-export default bookingsReducer;

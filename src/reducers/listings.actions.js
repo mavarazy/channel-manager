@@ -1,7 +1,8 @@
 import { createAction } from "redux-actions";
-import apiFactory from "./apiFactory";
+import { apiFactory } from "./apiFactory";
 
 export const CONNECTED = "connected";
+export const DISABLED = "disabled";
 export const NOT_CONNECTED = "notConnected";
 
 const api = apiFactory("/api/listings");
@@ -35,7 +36,7 @@ export const disableListingChannel = createAction(
   (listingId, channel) => ({ listingId, channel })
 );
 
-export const toggleChannel = (listingId, channel, status) => status === NOT_CONNECTED ? enableListingChannel(listingId, channel) : disableListingChannel(listingId, channel)
+export const toggleChannel = (listingId, channel, status) => status === DISABLED ? enableListingChannel(listingId, channel) : disableListingChannel(listingId, channel)
 
 export const toggleActive = (listingId, isActive) => isActive ? activateListing(listingId) : deActivateListing(listingId);
 

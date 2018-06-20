@@ -93,5 +93,3 @@ export const apiFactory = (base) => ({
     ).then(processJsonResponse)
   )
 });
-
-export default apiFactory;

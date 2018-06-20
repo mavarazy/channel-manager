@@ -7,4 +7,4 @@ export * from "./ProfileIcon";
 export * from "./LogoutIcon";
 export * from "./UserIcon";
 export * from "./TasksIcon";
-export * from "./TaskStatusIcon";
+export * from "./ChannelIcon";

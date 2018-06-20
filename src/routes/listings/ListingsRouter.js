@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import ListingAvailability from "./availability";
 import ListingBooking from "./booking";
+import ChannelConnections from "./ChannelConnections";
 import ListingDetails from "./details";
 import ListingChannels from "./ListingChannels";
 import Listings from "./Listings";
@@ -21,6 +22,7 @@ const ListingsRouter = () => (
     </div>
     <section className="section">
       <div className="container">
+        <Route exact path="/listings" component={ChannelConnections}/>
         <Route exact path="/listings" component={Listings}/>
         <Route path="/listings/:listingId" component={ListingChannels}/>
         <Route path="/listings/:listingId" component={ListingViewNav}/>
