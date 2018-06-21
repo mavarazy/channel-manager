@@ -82,6 +82,12 @@ export const updateReservationPreferences = createAction(
   (listingId, reservationPreferences) => ({ listingId, reservationPreferences })
 );
 
+export const updateTripLength = createAction(
+  "LISTING_AVAILABILITY_TRIP_LENGTH_UPDATE",
+  async (listingId, tripLength) => await api.put(`${listingId}/availability/tripLength`, tripLength),
+  (listingId, tripLength) => ({ listingId, tripLength })
+);
+
 export const activateListing = createAction(
   "LISTING_TOGGLE_ACTIVATE",
   async (listingId) => await api.post(`${listingId}/activate`),

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import cx from "classnames";
 import { Form, reduxForm } from "redux-form";
 
@@ -12,5 +13,9 @@ const EditForm = ({ handleSubmit, change, onCancel, pristine, submitting, childr
     </div>
   </Form>
 );
+
+EditForm.propTypes = {
+  form: PropTypes.string.isRequired
+};
 
 export default reduxForm({})(EditForm);
