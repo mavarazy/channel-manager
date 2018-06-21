@@ -1,6 +1,7 @@
 import cx from "classnames";
 import React, { Fragment } from "react";
 import { Field, Form, reduxForm } from "redux-form";
+import EditForm from "../EditForm";
 import { settingsBlock } from "../../../components";
 import { InputCheckbox } from "../../../components/form";
 import BooleanStatement from "../BooleanStatement";
@@ -21,8 +22,14 @@ const GuestRequirementView = ({ guestRequirements: { standard, governmentId, rec
   </Fragment>
 );
 
-const GuestRequirementsForm = ({ handleSubmit, change, onCancel, pristine, submitting }) => (
-  <Form onSubmit={handleSubmit}>
+// TODO tripInfo
+const GuestRequirementsEdit = ({ guestRequirements, onChange, switchMode }) => (
+  <EditForm
+    form={"guest-requirements"}
+    initialValues={guestRequirements}
+    onSubmit={(req) => onChange(req).then(() => switchMode())}
+    onCancel={switchMode}
+  >
     <Field
       name="standard"
       component={InputCheckbox}
@@ -42,24 +49,7 @@ const GuestRequirementsForm = ({ handleSubmit, change, onCancel, pristine, submi
       title="Recommendation from other hosts"
       subtitle="These guests have traveled on Airbnb, are recommended by other hosts, and have no negative reviews."
     />
-    <div className="buttons">
-      <a className="button" onClick={onCancel}>Cancel</a>
-      <button type="submit" className={cx("button is-primary", { "is-loading": submitting })} disabled={pristine}>Save
-      </button>
-    </div>
-  </Form>
-);
-
-// TODO tripInfo
-
-const GuestRequirementsFormRedux = reduxForm({ form: "guest-requirements" })(GuestRequirementsForm);
-
-const GuestRequirementsEdit = ({ guestRequirements, onChange, switchMode }) => (
-  <GuestRequirementsFormRedux
-    initialValues={guestRequirements}
-    onSubmit={(req) => onChange(req).then(() => switchMode())}
-    onCancel={switchMode}
-  />
+  </EditForm>
 );
 
 const GuestRequirement = settingsBlock("Guest Requirement", GuestRequirementView, GuestRequirementsEdit);

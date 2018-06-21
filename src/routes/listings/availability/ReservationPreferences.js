@@ -12,6 +12,8 @@ const ReservationPreferencesView = ({ advanceNotice, preparationTime, bookingWin
   </Fragment>
 );
 
+//const ReservationPreferenceForm = ({ handleSubmit })
+
 const ReservationPreferences = settingsBlock(
   "Reservation preferences",
   ReservationPreferencesView,

@@ -5,10 +5,12 @@ export const InputCheckbox = ({ input, title, subtitle, disabled = false }) => (
     <div className="columns is-clickable" onClick={() => input.onChange(!input.value)}>
       <div className="column is-1">
         <input
+          {...input}
           className="is-checkradio is-circle"
-          type="checkbox" {...input}
+          type="checkbox"
           checked={input.value}
-          disabled={disabled}/>
+          disabled={disabled}
+        />
         <label/>
       </div>
       <div className="column">
