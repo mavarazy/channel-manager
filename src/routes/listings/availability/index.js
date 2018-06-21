@@ -9,9 +9,7 @@ import TripLength from "./TripLength";
 
 const ListingAvailability = ({ reservationPreferences, tripLength, policy }) => (
   <Fragment>
-    <h3 className="subtitle has-text-weight-bold">Reservation preferences</h3>
     <ReservationPreferences {...reservationPreferences}/>
-    <hr/>
     <h1 className="subtitle has-text-weight-bold">Trip length</h1>
     <TripLength {...tripLength}/>
     <hr/>

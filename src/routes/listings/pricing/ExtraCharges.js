@@ -1,10 +1,13 @@
 import React, { Fragment } from "react";
+import ValueStatement from "../ValueStatement";
 
 const ExtraCharges = ({ extraCharges: { cleaningFee, securityDeposit, extraGuest } }) => (
   <Fragment>
-    <h1 className="subtitle is-marginless">Cleaning Fee <strong>{cleaningFee}</strong></h1>
-    <h1 className="subtitle is-marginless">Security Deposit <strong>{securityDeposit}</strong></h1>
-    <h1 className="subtitle is-marginless">Extra Guest <strong>{extraGuest}</strong></h1>
+    <ValueStatement value={cleaningFee}>Cleaning Fee</ValueStatement>
+    <hr/>
+    <ValueStatement value={securityDeposit}>Security Deposit</ValueStatement>
+    <hr/>
+    <ValueStatement value={extraGuest}>Extra Guest</ValueStatement>
   </Fragment>
 );
 

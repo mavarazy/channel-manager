@@ -3,21 +3,21 @@ import React, { Fragment } from "react";
 import { Field, Form, reduxForm } from "redux-form";
 import { settingsBlock } from "../../../components";
 import { InputCheckbox } from "../../../components/form";
-import Statement from "./Statement";
+import BooleanStatement from "../BooleanStatement";
 
 const GuestRequirementView = ({ guestRequirements: { standard, governmentId, recommendations } }) => (
   <Fragment>
-    <Statement isTrue={standard}>
+    <BooleanStatement isTrue={standard}>
       Standard Platform requirements
-    </Statement>
+    </BooleanStatement>
     <hr/>
-    <Statement isTrue={governmentId}>
+    <BooleanStatement isTrue={governmentId}>
       {governmentId ? "Government-issues ID" : "Government-issues ID"}
-    </Statement>
+    </BooleanStatement>
     <hr/>
-    <Statement isTrue={recommendations}>
+    <BooleanStatement isTrue={recommendations}>
       {recommendations ? "Recommendation from other hosts" : "Recommendation from other hosts"}
-    </Statement>
+    </BooleanStatement>
   </Fragment>
 );
 

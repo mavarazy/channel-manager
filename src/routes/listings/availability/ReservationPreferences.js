@@ -1,11 +1,21 @@
 import React, { Fragment } from "react";
+import { settingsBlock } from "../../../components";
+import { ValueStatement } from "../ValueStatement";
 
-const ReservationPreferences = ({ advanceNotice, preparationTime, bookingWindow }) => (
+const ReservationPreferencesView = ({ advanceNotice, preparationTime, bookingWindow }) => (
   <Fragment>
-    <h1 className="subtitle is-marginless">Advance Notice <strong>{advanceNotice}</strong></h1>
-    <h1 className="subtitle is-marginless">Preparation Time <strong>{preparationTime}</strong></h1>
-    <h1 className="subtitle is-marginless">Booking window <strong>{bookingWindow}</strong></h1>
+    <ValueStatement value={advanceNotice}>Advance Notice</ValueStatement>
+    <hr/>
+    <ValueStatement value={preparationTime}>Preparation Time</ValueStatement>
+    <hr/>
+    <ValueStatement value={bookingWindow}>Booking window</ValueStatement>
   </Fragment>
+);
+
+const ReservationPreferences = settingsBlock(
+  "Reservation preferences",
+  ReservationPreferencesView,
+  ReservationPreferencesView
 );
 
 export default ReservationPreferences;

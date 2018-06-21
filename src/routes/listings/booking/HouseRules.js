@@ -3,29 +3,29 @@ import React, { Fragment } from "react";
 import { Field, Form, reduxForm } from "redux-form";
 import { settingsBlock } from "../../../components";
 import { InputCheckbox } from "../../../components/form";
-import Statement from "./Statement";
+import BooleanStatement from "../BooleanStatement";
 
 const HouseRulesView = ({ houseRules: { suitableForChildren, suitableForInfants, petsAllowed, smokingAllowed, partiesAllowed } }) => (
   <Fragment>
-    <Statement isTrue={suitableForChildren}>
+    <BooleanStatement isTrue={suitableForChildren}>
       {suitableForChildren ? "Suitable for children (2-12 years)" : "Not suitable for children (2-12 years)"}
-    </Statement>
+    </BooleanStatement>
     <hr/>
-    <Statement isTrue={suitableForInfants}>
+    <BooleanStatement isTrue={suitableForInfants}>
       {suitableForInfants ? "Suitable for infants (under 2 years)": "Not suitable for infants (under 2 years)"}
-    </Statement>
+    </BooleanStatement>
     <hr/>
-    <Statement isTrue={petsAllowed}>
+    <BooleanStatement isTrue={petsAllowed}>
       {petsAllowed ? "Suitable for pets": "Not suitable for pets"}
-    </Statement>
+    </BooleanStatement>
     <hr/>
-    <Statement isTrue={smokingAllowed}>
+    <BooleanStatement isTrue={smokingAllowed}>
       {smokingAllowed ? "Smoking allowed": "No smoking"}
-    </Statement>
+    </BooleanStatement>
     <hr/>
-    <Statement isTrue={partiesAllowed}>
+    <BooleanStatement isTrue={partiesAllowed}>
       {partiesAllowed ? "Parties allowed": "No parties or events"}
-    </Statement>
+    </BooleanStatement>
   </Fragment>
 );
 

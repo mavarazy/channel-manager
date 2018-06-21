@@ -1,10 +1,13 @@
 import React, { Fragment } from "react";
+import ValueStatement from "../ValueStatement";
 
 const NightlyPrice = ({ nightlyPrice: { smartPricing, minPrice, maxPrice }}) => (
   <Fragment>
-    <h1 className="subtitle is-marginless">Smart Pricing <strong className={smartPricing ? "has-text-success": "has-text-grey"}>{smartPricing ? "On" : "Off"}</strong></h1>
-    <h1 className="subtitle is-marginless">Min Price <strong>{minPrice}</strong></h1>
-    <h1 className="subtitle is-marginless">Max Price <strong>{maxPrice}</strong></h1>
+    <ValueStatement value={smartPricing ? "On" : "Off"}>Smart Pricing</ValueStatement>
+    <hr/>
+    <ValueStatement value={minPrice}>Min Price</ValueStatement>
+    <hr/>
+    <ValueStatement value={maxPrice}>Max Price</ValueStatement>
   </Fragment>
 );
 

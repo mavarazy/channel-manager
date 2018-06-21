@@ -9,8 +9,7 @@ const amenityToPresentation = {
   iron: <h5 className="subtitle is-marginless">Iron</h5>,
   washer: <h5 className="subtitle is-marginless">Washer</h5>,
   hotWater: <h5 className="subtitle is-marginless">Hot Water</h5>,
-}
-
+};
 
 const Amenities = ({ amenities }) => (
   <div className="columns">

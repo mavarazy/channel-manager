@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
+import ValueStatement from "../ValueStatement";
 
 const LengthOfStayDiscount = ({ discounts: { weekly, monthly } }) => (
   <Fragment>
-    <h1 className="subtitle is-marginless">Weekly discount <strong>{weekly} %</strong></h1>
-    <h1 className="subtitle is-marginless">Monthly discount <strong>{monthly} %</strong></h1>
+    <ValueStatement value={`${weekly} %`}>Weekly discount</ValueStatement>
+    <hr/>
+    <ValueStatement value={`${monthly} %`}>Monthly discount</ValueStatement>
   </Fragment>
 );
 
