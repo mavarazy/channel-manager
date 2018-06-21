@@ -17,7 +17,7 @@ const ExtraChargesView = ({ extraCharges: { cleaningFee, securityDeposit, extraG
 
 const ExtraChargesEdit = ({ onChange, switchMode, extraCharges }) => (
   <EditForm
-    form="discounts"
+    form="extra-charges"
     initialValues={extraCharges}
     onCancel={switchMode}
     onSubmit={(req) => onChange(req).then(() => switchMode())}>
