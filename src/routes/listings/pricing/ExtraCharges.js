@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { settingsBlock } from "../../../components";
 import { Field } from "redux-form";
-import { InputNumber } from "../../../components/form";
+import { Input } from "../../../components/form";
 import EditForm from "../EditForm";
 import ValueStatement from "../ValueStatement";
 
@@ -23,17 +23,17 @@ const ExtraChargesEdit = ({ onChange, switchMode, extraCharges }) => (
     onSubmit={(req) => onChange(req).then(() => switchMode())}>
     <Field
       name="cleaningFee"
-      component={InputNumber}
+      component={Input}
       title="Cleaning Fee"
     />
     <Field
       name="securityDeposit"
-      component={InputNumber}
+      component={Input}
       title="Security Deposit"
     />
     <Field
       name="extraGuest"
-      component={InputNumber}
+      component={Input}
       title="Extra Guest"
     />
   </EditForm>

@@ -1,10 +1,44 @@
 import React from "react";
+import { settingsBlock } from "../../../components";
+import { Input } from "../../../components/form";
+import EditForm from "../EditForm";
+import { Field } from "redux-form";
+import ValueStatement from "../ValueStatement";
 
-const ListingGuestResource = ({ guestResources: { wifi, wifiPassword } }) => (
+const GuestResourceView = ({ guestResources: { wifi, wifiPassword } }) => (
   <div>
-    <h2 className="subtitle is-marginless">Wifi: {wifi}</h2>
-    <h2 className="subtitle is-marginless">Password: {wifiPassword}</h2>
+    <ValueStatement value={wifi}>Wifi</ValueStatement>
+    <hr/>
+    <ValueStatement value={wifiPassword}>Password</ValueStatement>
   </div>
 );
 
-export default ListingGuestResource;
+const GuestResourceEdit = ({ onChange, switchMode, guestResources }) => (
+  <EditForm
+    form="guest-resource"
+    initialValues={guestResources}
+    onCancel={switchMode}
+    onSubmit={(wifi) => onChange(wifi).then(() => switchMode())}
+  >
+    <Field
+      name="wifi"
+      component={Input}
+      title="Wifi"
+      type="text"
+    />
+    <Field
+      name="wifiPassword"
+      component={Input}
+      title="Password"
+      type="text"
+    />
+  </EditForm>
+);
+
+const GuestResource = settingsBlock(
+  "Guest Resource",
+  GuestResourceView,
+  GuestResourceEdit
+);
+
+export default GuestResource;

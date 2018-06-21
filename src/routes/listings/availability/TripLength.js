@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { settingsBlock } from "../../../components";
 import { Field } from "redux-form";
-import { InputNumber } from "../../../components/form";
+import { Input } from "../../../components/form";
 import EditForm from "../EditForm";
 import ValueStatement from "../ValueStatement";
 
@@ -24,13 +24,13 @@ const TripLengthEdit = ({ onChange, switchMode, ...rest }) => (
       name="min"
       type="number"
       title="Minimum stay"
-      component={InputNumber}
+      component={Input}
     />
     <Field
       name="max"
       type="number"
       title="Maximum stay"
-      component={InputNumber}
+      component={Input}
     />
   </EditForm>
 );

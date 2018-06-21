@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { settingsBlock } from "../../../components";
-import { InputCheckbox, InputNumber } from "../../../components/form";
+import { InputCheckbox, Input } from "../../../components/form";
 import { Field } from "redux-form";
 import EditForm from "../EditForm";
 import ValueStatement from "../ValueStatement";
@@ -31,12 +31,12 @@ const NightlyPriceEdit = ({ onChange, switchMode, nightlyPrice }) => (
       />
       <Field
         name="minPrice"
-        component={InputNumber}
+        component={Input}
         title="Minimum price"
       />
     <Field
       name="maxPrice"
-      component={InputNumber}
+      component={Input}
       title="Maximum price"
     />
   </EditForm>

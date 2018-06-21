@@ -18,12 +18,6 @@ export const getListing = createAction(
   listingId => ({ listingId })
 );
 
-export const getListingDetails = createAction(
-  "LISTING_GET_DETAILS",
-  async (listingId) => await api.get(`${listingId}/details`),
-  (listingId) => ({ listingId })
-);
-
 export const enableListingChannel = createAction(
   "LISTING_ENABLE_CHANNEL",
   async (listingId, channel) => await api.post(`${listingId}/channel/enable`, { channel }),
@@ -39,6 +33,18 @@ export const disableListingChannel = createAction(
 export const toggleChannel = (listingId, channel, status) => status === DISABLED ? enableListingChannel(listingId, channel) : disableListingChannel(listingId, channel)
 
 export const toggleActive = (listingId, isActive) => isActive ? activateListing(listingId) : deActivateListing(listingId);
+
+export const getListingDetails = createAction(
+  "LISTING_GET_DETAILS",
+  async (listingId) => await api.get(`${listingId}/details`),
+  (listingId) => ({ listingId })
+);
+
+export const updateGuestResources = createAction(
+  "LISTING_GUEST_RESOURCES_UPDATE",
+  async (listingId, guestResources) => await api.put(`${listingId}/details/guestResources`, guestResources),
+  (listingId, guestResources) => ({ listingId, guestResources })
+);
 
 export const getListingBookingSettings = createAction(
   "LISTING_GET_BOOKING_SETTINGS",

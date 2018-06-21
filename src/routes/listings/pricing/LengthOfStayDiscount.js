@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { settingsBlock } from "../../../components";
 import { Field } from "redux-form";
-import { InputNumber } from "../../../components/form";
+import { Input } from "../../../components/form";
 import EditForm from "../EditForm";
 import ValueStatement from "../ValueStatement";
 
@@ -21,12 +21,12 @@ const LengthOfStayDiscountEdit = ({ onChange, switchMode, discounts }) => (
     onSubmit={(req) => onChange(req).then(() => switchMode())}>
     <Field
       name="weekly"
-      component={InputNumber}
+      component={Input}
       title="Weekly discount"
     />
     <Field
       name="monthly"
-      component={InputNumber}
+      component={Input}
       title="Monthly discount"
     />
   </EditForm>
