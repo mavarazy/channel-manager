@@ -2,14 +2,14 @@ import React, { Fragment } from "react";
 import { bindActionCreators } from "redux";
 import selectn from "selectn";
 import { connectAndLoad } from "../../../components/connectAndLoad";
-import { getListingAvailabilitySettings } from "../../../reducers/listings.actions";
+import { getListingAvailabilitySettings, updateReservationPreferences } from "../../../reducers/listings.actions";
 import CheckInAndOut from "./CheckInAndOut";
 import ReservationPreferences from "./ReservationPreferences";
 import TripLength from "./TripLength";
 
-const ListingAvailability = ({ reservationPreferences, tripLength, policy }) => (
+const ListingAvailability = ({ reservationPreferences, tripLength, policy, updateReservationPreferences }) => (
   <Fragment>
-    <ReservationPreferences {...reservationPreferences}/>
+    <ReservationPreferences {...reservationPreferences} onChange={updateReservationPreferences}/>
     <h1 className="subtitle has-text-weight-bold">Trip length</h1>
     <TripLength {...tripLength}/>
     <hr/>
@@ -22,7 +22,8 @@ const ListingAvailability = ({ reservationPreferences, tripLength, policy }) => 
 const mapStateToProps = ({ listings }, { match: { params: { listingId }}}) => selectn(`${listingId}.availability`, listings);
 const mapDispatchToProps = (dispatch, { match: { params: { listingId }}}) => bindActionCreators(
   {
-    getListingAvailabilitySettings: () => getListingAvailabilitySettings(listingId)
+    getListingAvailabilitySettings: () => getListingAvailabilitySettings(listingId),
+    updateReservationPreferences: (prefs) => updateReservationPreferences(listingId, prefs),
   },
   dispatch
 );

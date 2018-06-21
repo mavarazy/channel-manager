@@ -14,11 +14,9 @@ export const InputRadio = ({ input, title, subtitle, tag, disabled = false }) =>
         </div>
       </div>
       <div className="column">
-        <div className="field">
-          <h5 className="title is-size-5">{title}</h5>
-          <h5 className="subtitle is-size-5">{subtitle}</h5>
-          {tag ? <span className="tag">{tag}</span> : null}
-        </div>
+        <h5 className="title is-size-5">{title}</h5>
+        <h5 className="subtitle is-size-5">{subtitle}</h5>
+        {tag ? <span className="tag">{tag}</span> : null}
       </div>
     </div>
     <hr/>

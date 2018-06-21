@@ -1,6 +1,5 @@
-import cx from "classnames";
 import React, { Fragment } from "react";
-import { Field, Form, reduxForm } from "redux-form";
+import { Field } from "redux-form";
 import EditForm from "../EditForm";
 import { settingsBlock } from "../../../components";
 import { InputCheckbox } from "../../../components/form";

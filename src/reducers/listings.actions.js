@@ -48,19 +48,19 @@ export const getListingBookingSettings = createAction(
 
 export const updateBookingProcess = createAction(
   "LISTING_UPDATE_BOOKING_PROCESS",
-  async (listingId, process) => await api.post(`${listingId}/booking/process`, process),
+  async (listingId, process) => await api.put(`${listingId}/booking/process`, process),
   (listingId, process) => ({ listingId, process })
 );
 
 export const updateGuestRequirements = createAction(
   "LISTING_UPDATE_GUEST_REQUIREMENTS",
-  async (listingId, guestRequirements) => await api.post(`${listingId}/booking/guestRequirements`, guestRequirements),
+  async (listingId, guestRequirements) => await api.put(`${listingId}/booking/guestRequirements`, guestRequirements),
   (listingId, guestRequirements) => ({ listingId, guestRequirements })
 );
 
 export const updateHouseRules = createAction(
   "LISTING_UPDATE_HOUSE_RULES",
-  async (listingId, houseRules) => await api.post(`${listingId}/booking/houseRules`, houseRules),
+  async (listingId, houseRules) => await api.put(`${listingId}/booking/houseRules`, houseRules),
   (listingId, houseRules) => ({ listingId, houseRules })
 );
 
@@ -74,6 +74,12 @@ export const getListingAvailabilitySettings = createAction(
   "LISTING_GET_AVAILABILITY_SETTINGS",
   async (listingId) => await api.get(`${listingId}/availability`),
   (listingId) => ({ listingId })
+);
+
+export const updateReservationPreferences = createAction(
+  "LISTING_RESERVATION_PREFERENCES_UPDATE",
+  async (listingId, reservationPreferences) => await api.put(`${listingId}/availability/reservationPreferences`, reservationPreferences),
+  (listingId, reservationPreferences) => ({ listingId, reservationPreferences })
 );
 
 export const activateListing = createAction(
