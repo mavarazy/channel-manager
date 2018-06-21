@@ -76,6 +76,12 @@ export const updateNightlyPrice = createAction(
   (listingId, nightlyPrice) => ({ listingId, nightlyPrice })
 );
 
+export const updateDiscounts = createAction(
+  "LISTING_PRICING_DISCOUNT_UPDATE",
+  async (listingId, discounts) => await api.put(`${listingId}/pricing/discounts`, discounts),
+  (listingId, discounts) => ({ listingId, discounts })
+);
+
 export const getListingAvailabilitySettings = createAction(
   "LISTING_GET_AVAILABILITY_SETTINGS",
   async (listingId) => await api.get(`${listingId}/availability`),

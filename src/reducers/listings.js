@@ -17,7 +17,7 @@ import {
   DISABLED,
   updateBookingProcess,
   updateGuestRequirements,
-  updateHouseRules, updateReservationPreferences, updateTripLength, updatePolicy, updateNightlyPrice
+  updateHouseRules, updateReservationPreferences, updateTripLength, updatePolicy, updateNightlyPrice, updateDiscounts
 } from "./listings.actions";
 
 const bookingReducer = handleActions(
@@ -63,7 +63,10 @@ const pricingReducer = handleActions(
     }),
     [updateNightlyPrice]: produce((draft, { meta: { nightlyPrice }}) => {
       draft.nightlyPrice = nightlyPrice;
-    })
+    }),
+    [updateDiscounts]: produce((draft, { meta: { discounts }}) => {
+      draft.discounts = discounts;
+    }),
   },
   {}
 );
@@ -85,7 +88,7 @@ const listingReducer = handleActions(
     [combineActions(getListingBookingSettings, updateBookingProcess, updateGuestRequirements, updateHouseRules)]: produce((draft, action) => {
       draft.bookingSettings = bookingReducer(draft.bookingSettings, action);
     }),
-    [combineActions(getListingPricingSettings, updateNightlyPrice)]: produce((draft, action) => {
+    [combineActions(getListingPricingSettings, updateNightlyPrice, updateDiscounts)]: produce((draft, action) => {
       draft.pricing = pricingReducer(draft.pricing, action);
     }),
     [combineActions(getListingAvailabilitySettings, updateReservationPreferences, updateTripLength, updatePolicy)]: produce((draft, action) => {
@@ -119,7 +122,7 @@ export const listingsReducer = handleActions(
     [connectChannel]: produce((draft, { meta: { channel }}) => {
       Object.values(draft).forEach(val => val.channels[channel].status = DISABLED)
     }),
-    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings, updateBookingProcess, updateGuestRequirements, updateHouseRules, updateReservationPreferences, updateTripLength, updatePolicy, updateNightlyPrice)]: produce((draft, action) => {
+    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings, updateBookingProcess, updateGuestRequirements, updateHouseRules, updateReservationPreferences, updateTripLength, updatePolicy, updateNightlyPrice, updateDiscounts)]: produce((draft, action) => {
       const { meta: { listingId }} = action;
       draft[listingId] = listingReducer(draft[listingId], action);
     }),

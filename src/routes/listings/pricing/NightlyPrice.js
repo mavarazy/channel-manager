@@ -19,7 +19,7 @@ const NightlyPriceView = ({ nightlyPrice: { smartPricing, minPrice, maxPrice }})
 
 const NightlyPriceEdit = ({ onChange, switchMode, nightlyPrice }) => (
   <EditForm
-    form="check-in-and-out"
+    form="nightly-price"
     initialValues={nightlyPrice}
     onCancel={switchMode}
     onSubmit={(req) => onChange(req).then(() => switchMode())}>
