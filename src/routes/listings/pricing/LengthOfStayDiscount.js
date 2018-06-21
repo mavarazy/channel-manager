@@ -15,7 +15,7 @@ const LengthOfStayDiscountView = ({ discounts: { weekly, monthly } }) => (
 
 const LengthOfStayDiscountEdit = ({ onChange, switchMode, discounts }) => (
   <EditForm
-    form="nightly-price"
+    form="discounts"
     initialValues={discounts}
     onCancel={switchMode}
     onSubmit={(req) => onChange(req).then(() => switchMode())}>

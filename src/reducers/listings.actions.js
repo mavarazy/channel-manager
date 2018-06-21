@@ -82,6 +82,12 @@ export const updateDiscounts = createAction(
   (listingId, discounts) => ({ listingId, discounts })
 );
 
+export const updateExtraCharges = createAction(
+  "LISTING_PRICING_EXTRA_CHARGES_UPDATE",
+  async (listingId, extraCharges) => await api.put(`${listingId}/pricing/extraCharges`, extraCharges),
+  (listingId, extraCharges) => ({ listingId, extraCharges })
+);
+
 export const getListingAvailabilitySettings = createAction(
   "LISTING_GET_AVAILABILITY_SETTINGS",
   async (listingId) => await api.get(`${listingId}/availability`),
