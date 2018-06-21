@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Field } from "redux-form";
 import { settingsBlock } from "../../../components";
-import { InputRadio, InputSelect } from "../../../components/form";
+import { Radio, Select } from "../../../components/form";
 import EditForm from "../EditForm";
 import ValueStatement from "../ValueStatement";
 
@@ -45,20 +45,20 @@ const CheckInAndOutEdit = ({ onChange, switchMode, ...rest }) => (
     onSubmit={(req) => onChange(req).then(() => switchMode())}>
     <Field
       name="checkInStart"
-      component={InputSelect}
+      component={Select}
       title="Check-in start time"
     >
       {TIME.map(val => <option key={val} value={val}>{val}</option>)}
     </Field>
     <Field
       name="checkInEnd"
-      component={InputSelect}
+      component={Select}
       title="Check-in end time">
       {TIME.map(val => <option key={val} value={val}>{val}</option>)}
     </Field>
     <Field
       name="checkOutTime"
-      component={InputSelect}
+      component={Select}
       title="Checkout time">
       {TIME.map(val => <option key={val} value={val}>{val}</option>)}
     </Field>
@@ -66,7 +66,7 @@ const CheckInAndOutEdit = ({ onChange, switchMode, ...rest }) => (
     <Field
       name="cancellationPolicy"
       value="Flexible"
-      component={InputRadio}
+      component={Radio}
       type="radio"
       title="Flexible"
       subtitle="Full refund 1 day prior to arrival"
@@ -74,7 +74,7 @@ const CheckInAndOutEdit = ({ onChange, switchMode, ...rest }) => (
     <Field
       name="cancellationPolicy"
       value="Moderate"
-      component={InputRadio}
+      component={Radio}
       type="radio"
       title="Moderate"
       subtitle="Full refund 5 day prior to arrival"
@@ -82,7 +82,7 @@ const CheckInAndOutEdit = ({ onChange, switchMode, ...rest }) => (
     <Field
       name="cancellationPolicy"
       value="Strict"
-      component={InputRadio}
+      component={Radio}
       type="radio"
       title="Strict"
       subtitle="Platform specific"

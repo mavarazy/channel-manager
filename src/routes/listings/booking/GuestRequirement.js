@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Field } from "redux-form";
 import EditForm from "../EditForm";
 import { settingsBlock } from "../../../components";
-import { InputCheckbox } from "../../../components/form";
+import { Checkbox } from "../../../components/form";
 import BooleanStatement from "../BooleanStatement";
 
 const GuestRequirementView = ({ guestRequirements: { standard, governmentId, recommendations } }) => (
@@ -31,20 +31,20 @@ const GuestRequirementsEdit = ({ guestRequirements, onChange, switchMode }) => (
   >
     <Field
       name="standard"
-      component={InputCheckbox}
+      component={Checkbox}
       title="Standard Platform requirements"
       subtitle="Confirmed phone number, email address, payment information, and agreement to House Rules."
       disabled={true}
     />
     <Field
       name="governmentId"
-      component={InputCheckbox}
+      component={Checkbox}
       title="Government-issued ID"
       subtitle="These guests have verified identities."
     />
     <Field
       name="recommendations"
-      component={InputCheckbox}
+      component={Checkbox}
       title="Recommendation from other hosts"
       subtitle="These guests have traveled on Airbnb, are recommended by other hosts, and have no negative reviews."
     />

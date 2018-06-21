@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Field } from "redux-form";
 import { settingsBlock } from "../../../components";
-import { InputSelect } from "../../../components/form";
+import { Select } from "../../../components/form";
 import EditForm from "../EditForm";
 import { ValueStatement } from "../ValueStatement";
 
@@ -46,7 +46,7 @@ const ReservationPreferenceEdit = ({ onChange, switchMode, ...rest }) => (
   >
     <Field
       name="advanceNotice"
-      component={InputSelect}
+      component={Select}
       type="select"
       title="Advance Notice"
     >
@@ -54,7 +54,7 @@ const ReservationPreferenceEdit = ({ onChange, switchMode, ...rest }) => (
     </Field>
     <Field
       name="preparationTime"
-      component={InputSelect}
+      component={Select}
       type="select"
       title="Preparation Time"
       subtitle="The nights before and after each reservation are available."
@@ -63,7 +63,7 @@ const ReservationPreferenceEdit = ({ onChange, switchMode, ...rest }) => (
     </Field>
     <Field
       name="bookingWindow"
-      component={InputSelect}
+      component={Select}
       type="select"
       title="Booking window"
       subtitle="All dates on your calendar are unavailable until you unblock them."

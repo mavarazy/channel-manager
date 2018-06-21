@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Field } from "redux-form";
 import { settingsBlock } from "../../../components";
-import { InputRadio } from "../../../components/form";
+import { Radio } from "../../../components/form";
 import EditForm from "../EditForm";
 
 const InstantBooking = () => (
@@ -34,7 +34,7 @@ const HowToBookEdit = (props) => (
   >
     <Field
       name="type"
-      component={InputRadio}
+      component={Radio}
       type="radio"
       value="instant"
       title="Guests who meet all your requirements can book instantly."
@@ -43,7 +43,7 @@ const HowToBookEdit = (props) => (
     />
     <Field
       name="type"
-      component={InputRadio}
+      component={Radio}
       type="radio"
       value="required"
       title="All guests must send a reservation request"

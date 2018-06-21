@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-export const InputCheckbox = ({ input, title, subtitle, disabled = false }) => (
+export const Checkbox = ({ input, title, subtitle, disabled = false }) => (
   <Fragment>
     <div className="columns is-clickable" onClick={() => input.onChange(!input.value)}>
       <div className="column is-1">

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { settingsBlock } from "../../../components";
-import { InputCheckbox, Input } from "../../../components/form";
+import { Checkbox, Input } from "../../../components/form";
 import { Field } from "redux-form";
 import EditForm from "../EditForm";
 import ValueStatement from "../ValueStatement";
@@ -25,7 +25,7 @@ const NightlyPriceEdit = ({ onChange, switchMode, nightlyPrice }) => (
     onSubmit={(req) => onChange(req).then(() => switchMode())}>
       <Field
         name="smartPricing"
-        component={InputCheckbox}
+        component={Checkbox}
         title="Smart Pricing"
         subtitle="Automatically adjust your price based on demand. Your price stays within the range you set, and you can change it at any time."
       />

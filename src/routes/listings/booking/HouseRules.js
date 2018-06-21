@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Field } from "redux-form";
 import { settingsBlock } from "../../../components";
-import { InputCheckbox } from "../../../components/form";
+import { Checkbox } from "../../../components/form";
 import BooleanStatement from "../BooleanStatement";
 import EditForm from "../EditForm";
 
@@ -38,27 +38,27 @@ const HouseRulesEdit = ({ houseRules, switchMode, onChange }) => (
   >
     <Field
       name="suitableForChildren"
-      component={InputCheckbox}
+      component={Checkbox}
       title="Suitable for children (2-12 years)"
     />
     <Field
       name="suitableForInfants"
-      component={InputCheckbox}
+      component={Checkbox}
       title="Suitable for infants (under 2 years)"
     />
     <Field
       name="petsAllowed"
-      component={InputCheckbox}
+      component={Checkbox}
       title="Pets allowed"
     />
     <Field
       name="smokingAllowed"
-      component={InputCheckbox}
+      component={Checkbox}
       title="Smoking allowed"
     />
     <Field
       name="partiesAllowed"
-      component={InputCheckbox}
+      component={Checkbox}
       title="Parties allowed"
     />
   </EditForm>

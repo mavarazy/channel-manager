@@ -52,6 +52,12 @@ export const updateDescription = createAction(
   (listingId, description) => ({ listingId, description })
 );
 
+export const updateOverview = createAction(
+  "LISTING_DETAILS_OVERVIEW_UDPATE",
+  async (listingId, overview) => await api.put(`${listingId}/details/overview`, overview),
+  (listingId, overview) => ({ listingId, overview })
+);
+
 export const getListingBookingSettings = createAction(
   "LISTING_GET_BOOKING_SETTINGS",
   async (listingId) => await api.get(`${listingId}/booking`),

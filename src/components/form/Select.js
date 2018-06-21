@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-export const InputSelect = ({ input, title, subtitle, children }) => (
+export const Select = ({ input, title, subtitle, children }) => (
   <Fragment>
     <div className="columns">
       <div className="column">

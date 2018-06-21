@@ -1,5 +1,5 @@
 import React from "react";
-import { InputSelect } from "../../../components/form";
+import { Select } from "../../../components/form";
 import EditForm from "../EditForm";
 import { Field } from "redux-form";
 import { settingsBlock } from "../../../components";
@@ -24,7 +24,7 @@ const CurrencyEdit = ({ onChange, switchMode, currency }) => (
   >
     <Field
       name="currency"
-      component={InputSelect}
+      component={Select}
       title="Currency"
     >
     {CURRENCIES.map(val => <option key={val} value={val}>{val}</option>)}
