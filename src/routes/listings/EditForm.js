@@ -4,7 +4,7 @@ import cx from "classnames";
 import { Form, reduxForm } from "redux-form";
 
 const EditForm = ({ handleSubmit, change, onCancel, pristine, submitting, children }) => (
-  <Form onSubmit={handleSubmit}>
+  <Form onSubmit={handleSubmit} className="box">
     {children}
     <div className="buttons">
       <a className="button" onClick={onCancel}>Cancel</a>

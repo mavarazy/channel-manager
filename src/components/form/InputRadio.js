@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-export const InputRadio = ({ input, title, subtitle, tag, disabled = false }) => (
+export const InputRadio = ({ input, title, subtitle, tag }) => (
   <Fragment>
     <div className="columns is-clickable" onClick={() => input.onChange(input.value)}>
       <div className="column is-1 has-text-centered">

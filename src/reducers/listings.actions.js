@@ -88,6 +88,12 @@ export const updateTripLength = createAction(
   (listingId, tripLength) => ({ listingId, tripLength })
 );
 
+export const updatePolicy = createAction(
+  "LISTING_AVAILABILITY_POLICY_UPDATE",
+  async (listingId, policy) => await api.put(`${listingId}/availability/policy`, policy),
+  (listingId, policy) => ({ listingId, policy })
+);
+
 export const activateListing = createAction(
   "LISTING_TOGGLE_ACTIVATE",
   async (listingId) => await api.post(`${listingId}/activate`),
