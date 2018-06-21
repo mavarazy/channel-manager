@@ -2,17 +2,15 @@ import React, { Fragment } from "react";
 import { bindActionCreators } from "redux";
 import selectn from "selectn";
 import { connectAndLoad } from "../../../components/connectAndLoad";
-import { getListingPricingSettings } from "../../../reducers/listings.actions";
+import { getListingPricingSettings, updateNightlyPrice } from "../../../reducers/listings.actions";
 import NightlyPrice from "./NightlyPrice";
 import LengthOfStayDiscount from "./LengthOfStayDiscount";
 import ExtraCharges from "./ExtraCharges";
 import Currency from "./Currency";
 
-const ListingPricing = ({ nightlyPrice, discounts, extraCharges, currency }) => (
+const ListingPricing = ({ nightlyPrice, discounts, extraCharges, currency, updateNightlyPrice }) => (
   <Fragment>
-    <h3 className="subtitle has-text-weight-bold">Nightly price</h3>
-    <NightlyPrice nightlyPrice={nightlyPrice}/>
-    <hr/>
+    <NightlyPrice nightlyPrice={nightlyPrice} onChange={updateNightlyPrice}/>
     <h3 className="subtitle has-text-weight-bold">Length-of-stay discounts</h3>
     <LengthOfStayDiscount discounts={discounts}/>
     <hr/>
@@ -28,7 +26,8 @@ const ListingPricing = ({ nightlyPrice, discounts, extraCharges, currency }) => 
 const mapStateToProps = ({ listings }, { match: { params: { listingId }}}) => selectn(`${listingId}.pricing`, listings);
 const mapDispatchToProps = (dispatch, { match: { params: { listingId }}}) => bindActionCreators(
   {
-    getListingPricingSettings: () => getListingPricingSettings(listingId)
+    getListingPricingSettings: () => getListingPricingSettings(listingId),
+    updateNightlyPrice: (pricing) => updateNightlyPrice(listingId, pricing),
   },
   dispatch
 );
