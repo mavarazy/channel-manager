@@ -53,7 +53,7 @@ const PhotoEdit = ({ link, type }) => (
 
 const AddPhoto = () => (
   <div className="column">
-    <div className="file is-boxed">
+    <div className="file is-boxed is-primary is-outlined">
       <label className="file-label">
         <input className="file-input" type="file" name="resume"/>
         <span className="file-cta">
@@ -71,7 +71,7 @@ const AddPhoto = () => (
 
 class PhotosEdit extends Component {
   render() {
-    const { photos } = this.props;
+    const { photos, switchMode } = this.props;
     const columns = Math.floor(photos.length / 3) + 1;
     return (
       <Fragment>
@@ -82,6 +82,9 @@ class PhotosEdit extends Component {
             {column === columns - 1 ? <AddPhoto/> : null}
           </div>
         ))}
+        <div className="buttons">
+          <a className="button is-primary is-outlined" onClick={switchMode}>Back</a>
+        </div>
       </Fragment>
     );
   }
