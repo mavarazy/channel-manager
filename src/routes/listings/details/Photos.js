@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from "react";
 import cx from "classnames";
+import { settingsBlock } from "../../../components";
 
 const range = (n) => [...Array(n).keys()];
 
@@ -21,7 +22,7 @@ const ListingPhotoPagination = ({ position, total, onSelect }) => (
   </div>
 );
 
-class Photos extends Component {
+class PhotosView extends Component {
   state = { position: 0 };
 
   handlePositionChange = (position) => {
@@ -41,5 +42,11 @@ class Photos extends Component {
     );
   }
 }
+
+const Photos = settingsBlock(
+  "Photos",
+  PhotosView,
+  PhotosView
+);
 
 export default Photos;

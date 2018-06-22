@@ -64,6 +64,12 @@ export const updateAmenities = createAction(
   (listingId, amenities) => ({ listingId, amenities })
 );
 
+export const updateLocation = createAction(
+  "LISTING_DETAILS_LOCATION_UPDATE",
+  async (listingId, location) => await api.put(`${listingId}/details/location`, location),
+  (listingId, location) => ({ listingId, location })
+);
+
 export const getListingBookingSettings = createAction(
   "LISTING_GET_BOOKING_SETTINGS",
   async (listingId) => await api.get(`${listingId}/booking`),

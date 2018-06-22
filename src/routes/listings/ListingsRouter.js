@@ -25,7 +25,7 @@ const ListingsRouter = () => (
         <Route exact path="/listings" component={ChannelConnections}/>
         <Route exact path="/listings" component={Listings}/>
         <div className="columns">
-          <div className="column is-8">
+          <div className="column is-7">
             <Route path="/listings/:listingId" component={ListingChannels}/>
             <Route path="/listings/:listingId" component={ListingViewNav}/>
             <Switch>

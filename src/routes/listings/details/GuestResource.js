@@ -8,7 +8,6 @@ import ValueStatement from "../ValueStatement";
 const GuestResourceView = ({ guestResources: { wifi, wifiPassword } }) => (
   <div>
     <ValueStatement value={wifi}>Wifi</ValueStatement>
-    <hr/>
     <ValueStatement value={wifiPassword}>Password</ValueStatement>
   </div>
 );
