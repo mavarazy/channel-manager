@@ -8,3 +8,4 @@ export * from "./LogoutIcon";
 export * from "./UserIcon";
 export * from "./TasksIcon";
 export * from "./ChannelIcon";
+export * from "./UploadIcon";

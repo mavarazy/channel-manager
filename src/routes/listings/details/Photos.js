@@ -1,6 +1,7 @@
-import React, { Fragment, Component } from "react";
 import cx from "classnames";
+import React, { Component, Fragment } from "react";
 import { settingsBlock } from "../../../components";
+import { UploadIcon } from "../../../components/icon";
 
 const range = (n) => [...Array(n).keys()];
 
@@ -43,10 +44,53 @@ class PhotosView extends Component {
   }
 }
 
+const PhotoEdit = ({ link, type }) => (
+  <div className="column">
+    <img className="is-3by2" src={link} alt={type}/>
+    <button className="button is-danger is-outlined is-small">Delete</button>
+  </div>
+);
+
+const AddPhoto = () => (
+  <div className="column">
+    <div className="file is-boxed">
+      <label className="file-label">
+        <input className="file-input" type="file" name="resume"/>
+        <span className="file-cta">
+          <span className="file-icon">
+            <UploadIcon/>
+          </span>
+          <span className="file-label">
+            Choose a file…
+          </span>
+        </span>
+      </label>
+    </div>
+  </div>
+);
+
+class PhotosEdit extends Component {
+  render() {
+    const { photos } = this.props;
+    const columns = Math.floor(photos.length / 3) + 1;
+    return (
+      <Fragment>
+        {range(columns).map(column => (
+          <div className="columns" key={column}>
+            {range(3).map((row) => (photos[row + column * 3] ?
+              <PhotoEdit key={row + column * 3} {...photos[row + column * 3]}/> : null))}
+            {column === columns - 1 ? <AddPhoto/> : null}
+          </div>
+        ))}
+      </Fragment>
+    );
+  }
+}
+
 const Photos = settingsBlock(
   "Photos",
   PhotosView,
-  PhotosView
+  PhotosEdit
 );
 
 export default Photos;
