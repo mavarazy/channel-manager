@@ -1,27 +1,56 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { settingsBlock } from "../../../components";
+import { Field } from "redux-form";
+import { Checkbox } from "../../../components/form";
+import EditForm from "../EditForm";
+import BooleanStatement from "../BooleanStatement";
 
-const amenityToPresentation = {
-  essentials: <h5 className="subtitle is-marginless">Essentials</h5>,
-  kitchen: <h5 className="subtitle is-marginless">Kitchen</h5>,
-  heating: <h5 className="subtitle is-marginless">Heating</h5>,
-  hairDryer: <h5 className="subtitle is-marginless">Hair Dryer</h5>,
-  hangers: <h5 className="subtitle is-marginless">Hangers</h5>,
-  iron: <h5 className="subtitle is-marginless">Iron</h5>,
-  washer: <h5 className="subtitle is-marginless">Washer</h5>,
-  hotWater: <h5 className="subtitle is-marginless">Hot Water</h5>,
+const AMENITIES_TO_TITLE = {
+  essentials: "Essentials",
+  kitchen: "Kitchen",
+  heating: "Heating",
+  hairDryer: "Hair Dryer",
+  hangers: "Hangers",
+  iron: "Iron",
+  washer: "Washer",
+  hotWater: "Hot Water",
 };
 
-const Amenities = ({ amenities }) => (
+const AmenitiesView = ({ amenities }) => (
   <div className="columns">
     <div className="column">
-      {Object.entries(amenities).map(([amenity, present], i) => present && i % 2 === 0 ? <Fragment key={i}>{amenityToPresentation[amenity]}</Fragment> : null)}
+      {Object.entries(amenities).map(([amenity, present], i) => i % 2 === 0 ? <BooleanStatement key={i} isTrue={present}>{AMENITIES_TO_TITLE[amenity]}</BooleanStatement> : null)}
     </div>
     <div className="column">
-      {Object.entries(amenities).map(([amenity, present], i) => present && i % 2 === 1 ? <Fragment key={i}>{amenityToPresentation[amenity]}</Fragment> : null)}
-    </div>
-    <div className="column">
+      {Object.entries(amenities).map(([amenity, present], i) => i % 2 === 1 ? <BooleanStatement key={i} isTrue={present}>{AMENITIES_TO_TITLE[amenity]}</BooleanStatement> : null)}
     </div>
   </div>
+);
+
+const AmenitiesEdit = ({ onChange, switchMode, amenities }) => (
+  <EditForm
+    form="amenities"
+    initialValues={amenities}
+    onCancel={switchMode}
+    onSubmit={(amenities) => onChange(amenities).then(() => switchMode())}
+  >
+    {
+      Object.entries(AMENITIES_TO_TITLE).map(([field, title]) => (
+        <Field
+          key={field}
+          name={field}
+          component={Checkbox}
+          title={title}
+        />
+      ))
+    }
+  </EditForm>
+);
+
+const Amenities = settingsBlock(
+  "Amenities",
+  AmenitiesView,
+  AmenitiesEdit
 );
 
 export default Amenities;
