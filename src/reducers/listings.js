@@ -29,7 +29,7 @@ import {
   updateDescription,
   updateOverview,
   updateAmenities,
-  updateLocation
+  updateLocation, deletePhoto
 } from "./listings.actions";
 
 const bookingReducer = handleActions(
@@ -109,6 +109,9 @@ const detailsReducer = handleActions(
     [updateLocation]: produce((draft, { meta: { location }}) => {
       draft.location = location
     }),
+    [deletePhoto]: produce((draft, { meta: { photo: { link } }}) => {
+      draft.photos = draft.photos.filter(ph => ph.link !== link) || [];
+    })
   },
   {}
 );
@@ -124,7 +127,7 @@ const listingReducer = handleActions(
     [deActivateListing]: produce((draft) => {
       draft.isActive = false;
     }),
-    [combineActions(getListingDetails, updateGuestResources, updateDescription, updateOverview, updateAmenities, updateLocation)]: produce((draft, action) => {
+    [combineActions(getListingDetails, updateGuestResources, updateDescription, updateOverview, updateAmenities, updateLocation, deletePhoto)]: produce((draft, action) => {
       draft.details = detailsReducer(draft.details, action);
     }),
     [combineActions(getListingBookingSettings, updateBookingProcess, updateGuestRequirements, updateHouseRules)]: produce((draft, action) => {
@@ -165,7 +168,7 @@ export const listingsReducer = handleActions(
     [connectChannel]: produce((draft, { meta: { channel }}) => {
       Object.values(draft).forEach(val => val.channels[channel].status = DISABLED)
     }),
-    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings, updateBookingProcess, updateGuestRequirements, updateHouseRules, updateReservationPreferences, updateTripLength, updatePolicy, updateNightlyPrice, updateDiscounts, updateExtraCharges, updateCurrency, updateGuestResources, updateDescription, updateOverview, updateAmenities, updateLocation)]: produce((draft, action) => {
+    [combineActions(getListing, enableListingChannel, disableListingChannel, getListingDetails, activateListing, deActivateListing, getListingBookingSettings, getListingPricingSettings, getListingAvailabilitySettings, updateBookingProcess, updateGuestRequirements, updateHouseRules, updateReservationPreferences, updateTripLength, updatePolicy, updateNightlyPrice, updateDiscounts, updateExtraCharges, updateCurrency, updateGuestResources, updateDescription, updateOverview, updateAmenities, updateLocation, deletePhoto)]: produce((draft, action) => {
       const { meta: { listingId }} = action;
       draft[listingId] = listingReducer(draft[listingId], action);
     }),

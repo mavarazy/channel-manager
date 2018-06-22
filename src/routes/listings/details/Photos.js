@@ -1,6 +1,6 @@
 import cx from "classnames";
 import React, { Component, Fragment } from "react";
-import { settingsBlock } from "../../../components";
+import { PromiseButton, settingsBlock } from "../../../components";
 import { UploadIcon } from "../../../components/icon";
 
 const range = (n) => [...Array(n).keys()];
@@ -44,10 +44,10 @@ class PhotosView extends Component {
   }
 }
 
-const PhotoEdit = ({ link, type }) => (
+const PhotoEdit = ({ link, type, onDelete }) => (
   <div className="column">
     <img className="is-3by2" src={link} alt={type}/>
-    <button className="button is-danger is-outlined is-small">Delete</button>
+    <PromiseButton onClick={onDelete} className="is-danger is-small">Delete</PromiseButton>
   </div>
 );
 
@@ -71,14 +71,22 @@ const AddPhoto = () => (
 
 class PhotosEdit extends Component {
   render() {
-    const { photos, switchMode } = this.props;
+    const { photos, switchMode, onDelete } = this.props;
     const columns = Math.floor(photos.length / 3) + 1;
     return (
       <Fragment>
         {range(columns).map(column => (
           <div className="columns" key={column}>
-            {range(3).map((row) => (photos[row + column * 3] ?
-              <PhotoEdit key={row + column * 3} {...photos[row + column * 3]}/> : null))}
+            {range(3)
+              .map((row) => {
+                let photo = photos[row + column * 3];
+                if (photo) {
+                  return (<PhotoEdit key={row + column * 3} {...photos[row + column * 3]} onDelete={() => onDelete(photo)}/>)
+                } else {
+                  return null;
+                }
+              })
+            }
             {column === columns - 1 ? <AddPhoto/> : null}
           </div>
         ))}

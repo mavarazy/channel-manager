@@ -4,3 +4,4 @@ export * from "./Drawer";
 export * from "./Checkbox";
 export * from "./Switch";
 export * from "./SettingsBlock";
+export * from "./PromiseButton";

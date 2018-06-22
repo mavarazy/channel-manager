@@ -70,6 +70,12 @@ export const updateLocation = createAction(
   (listingId, location) => ({ listingId, location })
 );
 
+export const deletePhoto = createAction(
+  "LISTING_DELETE_PHOTO",
+  async (listingId, photo) => await api.remove(`${listingId}/details/photos`, photo),
+  (listingId, photo) => ({ listingId, photo})
+);
+
 export const getListingBookingSettings = createAction(
   "LISTING_GET_BOOKING_SETTINGS",
   async (listingId) => await api.get(`${listingId}/booking`),
