@@ -1,0 +1,26 @@
+{
+  "root": "build/",
+  "proxies": {
+    "/api/auth": {
+      "origin": "https://596504e0-924b-43ce-bd24-8bab4d68ce29.mock.pstmn.io"
+    },
+    "/api/analytics": {
+      "origin": "https://c24ef53b-1e61-41cb-bf85-24a5f8fb2745.mock.pstmn.io"
+    },
+    "/api/availability": {
+      "v": "https://eaf90ad8-ed7f-4229-ba85-87537b301987.mock.pstmn.io"
+    },
+    "/api/listings": {
+      "origin": "https://a0f62930-28ad-4673-a894-af066b947378.mock.pstmn.io"
+    },
+    "/api/bookings": {
+      "origin": "https://410a9e02-c7c7-4655-ba5f-3c2c82f0b91f.mock.pstmn.io"
+    },
+    "/api/tasks": {
+      "origin": "https://67191703-e8af-4e1b-907d-e746ead34419.mock.pstmn.io"
+    },
+    "/api/channels": {
+      "origin": "https://2fa905c1-cde8-45d4-b8ae-cbf21c065b9c.mock.pstmn.io"
+    }
+  }
+}
