@@ -38,16 +38,16 @@ const rootReducer = (state, action) => appReducer(loader(state, action), action)
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(promiseMiddleware, thunk)));
 
 const loadingTask = store.getState().auth.isAuthenticated
-  ? Promise.all([store.dispatch(getListings()), store.dispatch(getTasks())])
+  ? Promise.all([store.dispatch(getListings()), store.dispatch(getTasks())]).catch(() => Promise.resolve(false))
   : Promise.resolve(true);
 
 loadingTask.then(() => {
   ReactDOM.render(
     <Fragment>
+      <ToastContainer/>
       <Provider store={store}>
         <App/>
       </Provider>
-      <ToastContainer/>
     </Fragment>,
     document.getElementById('root')
   );

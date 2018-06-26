@@ -17,14 +17,14 @@ export const clearToken = () => {
   localStorage.clear();
 };
 
+const notifyOfError = (task) => {
+  task.catch(({ error: { message = "Unknown server error, contact support " } = {} }) => toast.error(message))
+};
+
 const processJsonResponse = (res) => {
-  if (res.ok) {
-    return res.json()
-  } else {
-    let errorJson = res.json().catch(() => ({ error: { message: "Server error, contact support" } }));
-    errorJson.then(({ error: { message = "Unknown server error, contact support " } }) => toast.error(message));
-    return errorJson;
-  }
+  let task = res.json().then(json => res.ok ? json : Promise.reject(json), () => Promise.reject({ error: { message: `Can't read JSON from ${res.url}` }}))
+  notifyOfError(task);
+  return task;
 };
 
 export const apiFactory = (base) => ({

@@ -1,6 +1,8 @@
 import { getTasks, updateTask, updateTaskChannel } from "./tasks.actions";
 
 export const tasksReducer = (state = {}, { type, payload }) => {
+  if (!payload || payload.error)
+    return state;
   switch (type) {
     case `${getTasks}`:
       return payload.reduce((agg, task) => Object.assign(agg, { [task.taskId]: task }), {});
