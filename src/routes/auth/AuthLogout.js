@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { logout } from "../../reducers/auth.actions";
 
 const AuthLogout = ({ logout, history }) => {
@@ -16,6 +15,6 @@ const AuthLogout = ({ logout, history }) => {
 };
 
 const mapStateToProps = undefined;
-const mapDispatchToProps = (dispatch) => bindActionCreators({ logout }, dispatch);
+const mapDispatchToProps = { logout };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthLogout);

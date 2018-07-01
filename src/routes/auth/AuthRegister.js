@@ -2,7 +2,6 @@ import cx from "classnames";
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { bindActionCreators } from "redux";
 import { Field, Form, reduxForm } from "redux-form";
 import { register } from "../../reducers/auth.actions";
 
@@ -84,6 +83,6 @@ const AuthRegister = ({ register, history }) => (
 );
 
 const mapStateToProps = undefined;
-const mapDispatchToProps = (dispatch) => bindActionCreators({ register }, dispatch);
+const mapDispatchToProps = { register };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthRegister);

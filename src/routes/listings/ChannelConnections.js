@@ -1,5 +1,4 @@
 import React from "react";
-import { bindActionCreators } from "redux";
 import { Switch } from "../../components";
 import { connectAndLoad } from "../../components/connectAndLoad";
 import { listChannels, toggleChannel } from "../../reducers/channels.actions";
@@ -46,12 +45,6 @@ const ChannelConnections = ({ channels: { booking, airBnB, avito }, toggleChanne
 );
 
 const mapStateToProps = ({ channels }) => ({ channels });
-const mapDispatchToProps = (dispatch) => bindActionCreators(
-  {
-    listChannels,
-    toggleChannel
-  },
-  dispatch
-);
+const mapDispatchToProps = { listChannels, toggleChannel };
 
 export default connectAndLoad(mapStateToProps, mapDispatchToProps)({ listChannels }, ChannelConnections);

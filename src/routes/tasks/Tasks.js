@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import cx from "classnames";
 import { UP_TO_DATE_STATUS, UPDATING_STATUS, updateTask, updateTaskChannel } from "../../reducers/tasks.actions";
@@ -78,12 +77,6 @@ const Tasks = ({ tasks, ...actions }) => (
 );
 
 const mapStateToProps = ({ tasks }) => ({ tasks: Object.values(tasks) });
-const mapDispatchToProps = (dispatch) => bindActionCreators(
-  {
-    updateTask,
-    updateTaskChannel
-  },
-  dispatch
-);
+const mapDispatchToProps = { updateTask, updateTaskChannel };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

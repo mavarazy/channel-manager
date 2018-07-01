@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { bindActionCreators } from "redux";
 import { Switch } from "../../components";
 import { Checkbox } from "../../components/Checkbox";
 import { ViewIcon } from "../../components/icon";
@@ -68,12 +67,6 @@ const Listings = ({ listings, ...actions }) => {
 };
 
 const mapStateToProps = ({ listings }) => ({ listings: Object.values(listings) });
-const mapDispatchToProps = (dispatch) => bindActionCreators(
-  {
-    toggleActive,
-    toggleChannel
-  },
-  dispatch
-);
+const mapDispatchToProps = { toggleActive, toggleChannel };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Listings);
